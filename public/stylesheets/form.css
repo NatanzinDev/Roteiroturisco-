@@ -1,0 +1,172 @@
+  /* Paleta de Cores Inspirada em São Miguel do Gostoso */
+        :root {
+            --cor-areia-fundo: #F4F1EA;
+            --cor-mar-profundo: #005A8D;
+            --cor-mar-claro: #00B4D8;
+            --cor-sol-destaque: #FFC300;
+            --cor-branco-card: #FFFFFF;
+            --cor-texto-principal: #333333;
+            --cor-verde-natureza: #4CAF50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cor-areia-fundo);
+            color: var(--cor-texto-principal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container-cadastro {
+            background-color: var(--cor-branco-card);
+            padding: 2.5rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 650px;
+            border-top: 5px solid var(--cor-mar-claro);
+        }
+
+        .header-formulario {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-formulario h1 {
+            color: var(--cor-mar-profundo);
+            font-weight: 700;
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+
+        .header-formulario p {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cor-mar-profundo);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cor-sol-destaque);
+            box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .atividades-fieldset {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .atividades-fieldset legend {
+            padding: 0 0.8rem;
+            font-weight: 600;
+            color: var(--cor-mar-profundo);
+            font-size: 1.1rem;
+        }
+
+        .atividades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        .atividade-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--cor-areia-fundo);
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+
+        .atividade-item input[type="checkbox"] {
+            appearance: none;
+            width: 1.3em;
+            height: 1.3em;
+            border: 2px solid #bbb;
+            border-radius: 4px;
+            margin-right: 0.8rem;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .atividade-item input[type="checkbox"]:checked {
+            background-color: var(--cor-verde-natureza);
+            border-color: var(--cor-verde-natureza);
+        }
+        
+        .atividade-item input[type="checkbox"]:checked::before {
+            content: '✔';
+            color: white;
+            position: absolute;
+            font-size: 0.9em;
+            font-weight: bold;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .atividade-item label {
+            margin: 0;
+            font-weight: 500;
+            color: var(--cor-texto-principal);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--cor-mar-profundo), var(--cor-mar-claro));
+            color: var(--cor-branco-card);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 5px 20px rgba(0, 120, 182, 0.4);
+        }

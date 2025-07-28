@@ -1,0 +1,85 @@
+#{extends 'main.html' /}
+#{set title:'Gostoso Destinos' /}
+
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/inicio.css'}">
+
+ <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Gostoso Destinos</a>
+            <nav class="main-nav">
+                <a href="#" class="active">Home</a>
+                <a href="#">Pacotes</a>
+                <a href="#">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Explore os Tesouros de São Miguel do Gostoso</h1>
+                <p>Montamos roteiros inesquecíveis que combinam aventura, relaxamento e a cultura vibrante do litoral potiguar. Sua próxima grande história começa aqui.</p>
+                <a href="#atividades" class="btn">Descubra as Atividades</a>
+            </div>
+        </section>
+
+        <section id="atividades" class="atividades-section container">
+            <h2 class="section-title">Viva Essas Experiências</h2>
+            <p class="section-subtitle">Das dunas emocionantes às águas calmas dos parrachos, cada atividade é uma oportunidade única de se conectar com a natureza exuberante de Gostoso.</p>
+
+            <div class="atividades-grid">
+                <div class="card-atividade">
+                    <img src="@{'/public/images/buggy.jpeg'}" alt="Pessoas andando de buggy nas dunas">
+                    <div class="card-content">
+                        <h3>Passeio de Buggy</h3>
+                        <p>Sinta a emoção e o vento no rosto explorando dunas, praias desertas e lagoas de águas cristalinas. Uma aventura clássica e indispensável.</p>
+                    </div>
+                </div>
+
+                <div class="card-atividade">
+                    <img src="@{'/public/images/kite.jpg'}" alt="Praticante de Kitesurf no mar">
+                    <div class="card-content">
+                        <h3>Aula de Kitesurf</h3>
+                        <p>Aproveite os ventos perfeitos de Gostoso para aprender a planar sobre as águas. Uma experiência de liberdade e adrenalina pura.</p>
+                    </div>
+                </div>
+
+                <div class="card-atividade">
+                    <img src="@{'/public/images/parracho.jpeg'}" alt="Mergulho em recifes de corais (Parrachos)">
+                    <div class="card-content">
+                        <h3>Visita aos Parrachos</h3>
+                        <p>Navegue até os recifes de corais e mergulhe em piscinas naturais repletas de vida marinha. Um paraíso submerso esperando por você.</p>
+                    </div>
+                </div>
+
+                 <div class="card-atividade">
+                    <img src="@{'/public/images/tourinhos.jpg'}" alt="Pôr do sol na praia de Tourinhos">
+                    <div class="card-content">
+                        <h3>Pôr do Sol em Tourinhos</h3>
+                        <p>Contemple um dos mais belos espetáculos da natureza, onde o sol se despede no mar, colorindo o céu e as dunas petrificadas.</p>
+                    </div>
+                </div>
+
+                <div class="card-atividade">
+                    <img src="@{'/public/images/cavalgada.jpg'}" alt="Pessoas andando a cavalo na praia">
+                    <div class="card-content">
+                        <h3>Cavalgada na Praia</h3>
+                        <p>Percorra a orla sentindo a brisa do mar em um passeio tranquilo e relaxante a cavalo, conectando-se com a paisagem de forma única.</p>
+                    </div>
+                </div>
+
+                <div class="card-atividade">
+                    <img src="@{'/public/images/quadri.jpeg'}" alt="Pessoa pilotando quadriciclo em trilha">
+                    <div class="card-content">
+                        <h3>Aventura de Quadriciclo</h3>
+                        <p>Explore trilhas e caminhos alternativos com a emoção de pilotar um quadriciclo, descobrindo paisagens incríveis pelo interior da região.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Gostoso Destinos. Todos os direitos reservados.</p>
+    </footer>

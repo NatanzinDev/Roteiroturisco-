@@ -1,0 +1,68 @@
+#{extends 'main.html' /}
+#{set title:'Salvar pacote' /}
+
+ <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/form.css'}">
+ 
+ <main class="container-cadastro">
+        <header class="header-formulario">
+            <h1>Cadastro de Pacote Turístico</h1>
+            <p>Crie um novo roteiro combinando as atividades da região.</p>
+        </header>
+
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="nome_pacote">Nome do Pacote</label>
+                <input type="text" id="nome_pacote" name="nome_pacote" placeholder="Ex: Rota do Sol e Vento" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço (R$)</label>
+                <input type="number" id="preco" name="preco" placeholder="Ex: 950.00" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="duracao">Duração</label>
+                <input type="text" id="duracao" name="duracao" placeholder="Ex: 3 dias" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição Detalhada do Pacote</label>
+                <textarea id="descricao" name="descricao" placeholder="Descreva os diferenciais, o que está incluso e os encantos deste pacote..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <fieldset class="atividades-fieldset">
+                    <legend>Selecione as Atividades</legend>
+                    <div class="atividades-grid">
+                        <div class="atividade-item">
+                            <input type="checkbox" id="ativ1" name="atividades[]" value="buggy">
+                            <label for="ativ1">Passeio de Buggy</label>
+                        </div>
+                        <div class="atividade-item">
+                            <input type="checkbox" id="ativ2" name="atividades[]" value="parrachos">
+                            <label for="ativ2">Visita aos Parrachos</label>
+                        </div>
+                        <div class="atividade-item">
+                            <input type="checkbox" id="ativ3" name="atividades[]" value="tourinhos">
+                            <label for="ativ3">Pôr do Sol em Tourinhos</label>
+                        </div>
+                        <div class="atividade-item">
+                            <input type="checkbox" id="ativ4" name="atividades[]" value="kitesurf">
+                            <label for="ativ4">Aula de Kitesurf</label>
+                        </div>
+                        <div class="atividade-item">
+                            <input type="checkbox" id="ativ5" name="atividades[]" value="quadriciclo">
+                            <label for="ativ5">Aventura de Quadriciclo</label>
+                        </div>
+                         <div class="atividade-item">
+                            <input type="checkbox" id="ativ6" name="atividades[]" value="cavalgada">
+                            <label for="ativ6">Cavalgada na Praia</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="submit" class="btn-submit">Cadastrar Pacote</button>
+        </form>
+    </main>
+
