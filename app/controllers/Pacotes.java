@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.Atividade;
 import models.PacoteTuristico;
+import models.Status;
 import play.mvc.Controller;
 
 public class Pacotes extends Controller {
@@ -37,7 +38,7 @@ public class Pacotes extends Controller {
 
         flash.success("Pacote '%s' salvo com sucesso!", pacote.nome);
         // Redireciona para a página de listagem
-        lista(); 
+        lista(null); 
 		
 
 	}
@@ -46,8 +47,24 @@ public class Pacotes extends Controller {
 		render();
 	}
 
-	public static void lista() {
-		render();
+	public static void lista(String termo) {
+		List<PacoteTuristico> pacotes = null;
+		
+		if(termo == null) {
+			pacotes = PacoteTuristico.find("status <> ?1", Status.INATIVO).fetch();
+		}
+		
+		pacotes = PacoteTuristico.find("status <> ?1", Status.INATIVO).fetch();
+		render(pacotes);
 	}
+	
+	public static void editar(Long id) {
+		PacoteTuristico p = PacoteTuristico.findById(id);
+		List<Atividade> a = Atividade.findAll();
+		renderTemplate("Pacotes/form.html",p,a);
+		
+	}
+	
+	
 
 }

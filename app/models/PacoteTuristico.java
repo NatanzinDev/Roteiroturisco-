@@ -22,7 +22,7 @@ public class PacoteTuristico extends Model{
 	
 	@ManyToMany
 	@JoinTable(name="pacote_atividade")
-	public List<Atividade> atividades = null;
+	public List<Atividade> atividades ;
 
 	public PacoteTuristico(String nome, Double preco, int duracao, String descricao, List<Atividade> atividades) {
 		super();

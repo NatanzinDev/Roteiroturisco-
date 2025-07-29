@@ -3,78 +3,53 @@
 
  <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/lista.css'}">
  
- <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="icon-clock" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path d="M13 7h-2v6h6v-2h-4V7z"/></symbol>
-        <symbol id="icon-tag" viewBox="0 0 24 24"><path d="M10.684 4.002a2.001 2.001 0 0 0-1.415.586L2.586 11.272a2 2 0 0 0 0 2.828l7.878 7.879a2 2 0 0 0 2.829 0l6.683-6.683a2.001 2.001 0 0 0 .586-1.415V6.002a2 2 0 0 0-2-2h-7.878zM15 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></symbol>
-        <symbol id="icon-check" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.954 14.286-3.779-3.779 1.414-1.414 2.227 2.227 4.887-4.887 1.414 1.414-6.363 6.363z"/></symbol>
-    </svg>
-
-   
-
-    <main>
-        <section class="page-title-section">
-            <div class="container">
-                <h1>Roteiros Incríveis em Gostoso</h1>
-                <p>Encontre o pacote perfeito para sua viagem. Cada roteiro foi pensado para proporcionar experiências únicas e memoráveis.</p>
-            </div>
-        </section>
-
+ <main>
+    <section class="page-title-section">
         <div class="container">
-            <div class="pacotes-grid">
-                
-                <div class="pacote-card">
-                    <div class="pacote-card-content">
-                        <h3>Aventura no Litoral Norte</h3>
-                        <div class="pacote-meta">
-                            <span class="meta-item"><svg><use href="#icon-clock"/></svg> 3 Dias</span>
-                            <span class="meta-item"><svg><use href="#icon-tag"/></svg> R$ 899,90</span>
-                        </div>
-                        <ul class="atividades-list">
-                            <h4>Atividades Inclusas:</h4>
-                            <li><svg><use href="#icon-check"/></svg> Passeio de Buggy</li>
-                            <li><svg><use href="#icon-check"/></svg> Aula de Kitesurf</li>
-                            <li><svg><use href="#icon-check"/></svg> Pôr do Sol em Tourinhos</li>
-                        </ul>
-                        <a href="#" class="btn">Ver Detalhes</a>
-                    </div>
-                </div>
-
-                <div class="pacote-card">
-                    <div class="pacote-card-content">
-                        <h3>Relax Total em Gostoso</h3>
-                        <div class="pacote-meta">
-                             <span class="meta-item"><svg><use href="#icon-clock"/></svg> 4 Dias</span>
-                            <span class="meta-item"><svg><use href="#icon-tag"/></svg> R$ 1.250,00</span>
-                        </div>
-                        <ul class="atividades-list">
-                            <h4>Atividades Inclusas:</h4>
-                            <li><svg><use href="#icon-check"/></svg> Visita aos Parrachos</li>
-                            <li><svg><use href="#icon-check"/></svg> Cavalgada na Praia</li>
-                            <li><svg><use href="#icon-check"/></svg> Aventura de Quadriciclo</li>
-                        </ul>
-                        <a href="#" class="btn">Ver Detalhes</a>
-                    </div>
-                </div>
-
-                <div class="pacote-card">
-                    <div class="pacote-card-content">
-                        <h3>Imersão Radical</h3>
-                        <div class="pacote-meta">
-                             <span class="meta-item"><svg><use href="#icon-clock"/></svg> 2 Dias</span>
-                            <span class="meta-item"><svg><use href="#icon-tag"/></svg> R$ 750,00</span>
-                        </div>
-                        <ul class="atividades-list">
-                            <h4>Atividades Inclusas:</h4>
-                            <li><svg><use href="#icon-check"/></svg> Aula de Kitesurf</li>
-                            <li><svg><use href="#icon-check"/></svg> Aventura de Quadriciclo</li>
-                            <li><svg><use href="#icon-check"/></svg> Passeio de Buggy</li>
-                        </ul>
-                        <a href="#" class="btn">Ver Detalhes</a>
-                    </div>
-                </div>
-
+            <h1>Roteiros Incríveis em Gostoso</h1>
+            <p>Encontre o pacote perfeito para sua viagem. Cada roteiro foi pensado para proporcionar experiências únicas e memoráveis.</p>
+            
+            <div class="search-container">
+                <form action="@{Pacotes.lista}" method="GET" class="search-form">
+                    <input type="search" name="termo" class="search-input" placeholder="Buscar por nome ou atividade..." value="${termo}">
+                    <button type="submit" class="search-button">
+                        <svg><use href="#icon-search"/></svg>
+                    </button>
+                </form>
             </div>
-        </div>
-    </main>
+            </div>
+    </section>
+
+    <div class="container">
+        <div class="pacotes-grid">
+            
+            #{list items:pacotes, as:'pacote'}
+                <div class="pacote-card">
+                    <div class="pacote-card-content">
+                        <h3>${pacote.nome}</h3>
+
+                        <div class="pacote-meta">
+                            <span class="meta-item"><svg><use href="#icon-clock"/></svg> ${pacote.duracao}</span>
+                            <span class="meta-item"><svg><use href="#icon-tag"/></svg> R$ ${pacote.preco.format('##0.00')}</span>
+                        </div>
+
+                        <ul class="atividades-list">
+                            <h4>Atividades Inclusas:</h4>
+                            
+                            #{list items:pacote.atividades, as:'atividade'}
+                                <li><svg><use href="#icon-check"/></svg> ${atividade.nome}</li>
+                            #{/list}
+
+                        </ul>
+                        <a href="@{Pacotes.lista}" class="btn">Ver Detalhes</a>
+                    </div>
+                </div>
+            #{/list}
+            #{else}
+                <p class="sem-resultados">Nenhum pacote encontrado com os critérios de busca.</p>
+            #{/else}
+            </div>
+    </div>
+</main>
 
     
