@@ -7,11 +7,25 @@
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/inicio.css'}">
     </head>
     <body>
+     <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Gostoso Destinos</a>
+            <nav class="main-nav">
+                <a href="@{Pacotes.inicio}" class="active">Home</a>
+                <a href="@{Pacotes.lista}">Pacotes</a>
+               
+            </nav>
+        </div>
+    </header>
     	<div>
         #{doLayout /}
         </div>
+        <footer class="main-footer">
+        <p>&copy; 2025 Gostoso Destinos. Todos os direitos reservados.</p>
+    </footer>
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
     </body>

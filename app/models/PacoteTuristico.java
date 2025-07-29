@@ -1,8 +1,12 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import play.db.jpa.Model;
 
@@ -15,4 +19,20 @@ public class PacoteTuristico extends Model{
 	
 	@Enumerated(EnumType.STRING)
 	public Status status;
-}
+	
+	@ManyToMany
+	@JoinTable(name="pacote_atividade")
+	public List<Atividade> atividades = null;
+
+	public PacoteTuristico(String nome, Double preco, int duracao, String descricao, List<Atividade> atividades) {
+		super();
+		this.nome = nome;
+		this.preco = preco;
+		this.duracao = duracao;
+		this.descricao = descricao;
+		this.atividades = atividades;
+		this.status = Status.ATIVO;
+	}
+	
+	
+} 
