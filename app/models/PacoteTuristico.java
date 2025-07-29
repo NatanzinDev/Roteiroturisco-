@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import play.db.jpa.Model;
 
@@ -11,5 +13,6 @@ public class PacoteTuristico extends Model{
 	public int duracao;
 	public String descricao;
 	
-	
+	@Enumerated(EnumType.STRING)
+	public Status status;
 }
