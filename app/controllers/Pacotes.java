@@ -93,10 +93,27 @@ public static void excluir(Long id) {
     } else {
         flash.error("Pacote não encontrado.");
     }
-    lista(null);
+    	listaadm(null);
 		
 	}
 	
+public static void listaadm(String termo) {
+	List<PacoteTuristico> pacotes = null;
 	
+	if(termo == null) {
+		pacotes = PacoteTuristico.findAll();
+	}else {
+		
+        String termoBusca = "%" + termo.toLowerCase() + "%";
+        
+        pacotes = PacoteTuristico.find(
+                "SELECT DISTINCT p FROM PacoteTuristico p LEFT JOIN p.atividades a " +
+                        "WHERE LOWER(p.nome) LIKE ?1 OR LOWER(a.nome) LIKE ?1", termoBusca
+                    ).fetch();
+	}
+	
+	
+	render(pacotes,termo);
+}
 
 }

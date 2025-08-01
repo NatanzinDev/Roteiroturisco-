@@ -1,0 +1,74 @@
+#{extends 'main.html' /}
+#{set title:'Opções do administrador' /}
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/listaadm.css'}">
+<main>
+    <section class="page-title-section">
+        <div class="container">
+            <h1>Gerenciamento de Pacotes Turísticos</h1>
+            <p>Visualize, edite, remova e crie novos pacotes para sua agência.</p>
+
+            <div class="search-container">
+                <form action="@{Pacotes.listaadm()}" method="GET" class="search-form">
+                    <input type="search" name="termo" class="search-input"
+                        placeholder="Buscar por nome ou atividade..." value="${termo}">
+                    <button type="submit" class="search-button">
+                        <svg><use href="#icon-search" /></svg>
+                    </button>
+                </form>
+            </div>
+            
+            <a href="@{Pacotes.form()}" class="btn-success">Cadastrar Novo Pacote</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Pacote</th>
+                        <th>Duração</th>
+                        <th>Preço</th>
+                        <th>Status</th>
+                        <th style="text-align: right;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #{list items:pacotes, as:'pacote'}
+                    <tr>
+                        <td>
+                            <strong>${pacote.nome}</strong>
+                        </td>
+                        <td>
+                            ${pacote.duracao} dias
+                        </td>
+                        <td>
+                            R$ ${pacote.preco.format('##0.00')}
+                        </td>
+                        <td>
+                            <span class="status-badge 
+                                #{if pacote.status.name() == 'ATIVO'}status-ativo#{/if}
+                                #{if pacote.status.name() == 'INATIVO'}status-inativo#{/if}">
+                                ${pacote.status.name()}
+                            </span>
+                        </td>
+                        <td class="actions-cell" style="justify-content: flex-end;">
+                            <a href="@{Pacotes.detalhar(pacote.id)}" class="btn-info">Detalhes</a>
+                            <a href="@{Pacotes.editar(pacote.id)}" class="btn-warning">Editar</a>
+                            <a href="@{Pacotes.excluir(pacote.id)}" class="btn-danger" onclick="return confirm('Tem certeza que deseja inativar o pacote \'${pacote.nome}\'?');">Inativar</a>
+                        </td>
+                    </tr>
+                    #{/list}
+                    #{else}
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 2rem;">
+                            Nenhum pacote encontrado com os critérios de busca.
+                        </td>
+                    </tr>
+                    #{/else}
+                </tbody>
+            </table>
+        </div>
+        </div>
+</main>

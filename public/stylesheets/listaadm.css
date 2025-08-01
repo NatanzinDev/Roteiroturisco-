@@ -1,0 +1,127 @@
+:root {
+            --cor-areia-fundo: #F4F1EA;
+            --cor-mar-profundo: #005A8D;
+            --cor-mar-claro: #00B4D8;
+            --cor-sol-destaque: #FFC300;
+            --cor-branco-card: #FFFFFF;
+            --cor-texto-principal: #333333;
+            --cor-texto-secundario: #667;
+            --cor-verde-natureza: #4CAF50;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--cor-areia-fundo); color: var(--cor-texto-principal); line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .main-header { background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); padding: 1rem 0; position: sticky; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--cor-mar-profundo); text-decoration: none; }
+        .main-nav a { color: var(--cor-mar-profundo); text-decoration: none; margin-left: 1.5rem; font-weight: 500; transition: color 0.3s; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+        .main-nav a:hover, .main-nav a.active { color: var(--cor-mar-claro); border-bottom-color: var(--cor-mar-claro); }
+        .page-title-section { padding: 4rem 0 3rem 0; text-align: center; background-color: var(--cor-branco-card); }
+        .page-title-section h1 { font-size: 3rem; color: var(--cor-mar-profundo); margin-bottom: 0.5rem; }
+        .page-title-section p { font-size: 1.1rem; color: var(--cor-texto-secundario); max-width: 600px; margin: 0 auto; }
+        
+        /* INÍCIO - ESTILOS DA BARRA DE BUSCA */
+        .search-container { margin-top: 2rem; }
+        .search-form { display: flex; max-width: 500px; margin: 0 auto; }
+        .search-input {
+            flex-grow: 1;
+            border: 2px solid #ddd;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 50px 0 0 50px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .search-input:focus {
+            border-color: var(--cor-sol-destaque);
+            box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.3);
+        }
+        .search-button {
+            border: none;
+            background-color: var(--cor-mar-profundo);
+            color: white;
+            padding: 0 1.5rem;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover { background-color: var(--cor-mar-claro); }
+        .search-button svg { width: 22px; height: 22px; fill: white; }
+        /* FIM - ESTILOS DA BARRA DE BUSCA */
+
+        .pacotes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; padding: 4rem 0; }
+        .pacote-card { background-color: var(--cor-branco-card); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; border-top: 5px solid var(--cor-mar-claro); }
+        .pacote-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,90,141,0.15); }
+        .pacote-card-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .pacote-card h3 { font-size: 1.6rem; color: var(--cor-mar-profundo); margin-bottom: 1rem; }
+        .pacote-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-weight: 500; color: var(--cor-texto-secundario); }
+        .meta-item { display: flex; align-items: center; }
+        .meta-item svg { width: 20px; height: 20px; margin-right: 0.5rem; fill: var(--cor-mar-claro); }
+        .atividades-list { list-style: none; margin-top: auto; padding-top: 1rem; border-top: 1px solid #eee; }
+        .atividades-list h4 { font-weight: 600; color: var(--cor-mar-profundo); margin-bottom: 0.75rem; }
+        .atividades-list li { display: flex; align-items: center; margin-bottom: 0.5rem; color: var(--cor-texto-secundario); }
+        .atividades-list li svg { width: 18px; height: 18px; margin-right: 0.6rem; fill: var(--cor-verde-natureza); }
+        .btn { background: linear-gradient(45deg, var(--cor-mar-profundo), var(--cor-mar-claro)); color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; display: block; margin-top: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0, 120, 182, 0.4); }
+        .main-footer { background-color: var(--cor-mar-profundo); color: #fff; text-align: center; padding: 2rem 0; margin-top: 2rem; }
+        
+        /* Container para alinhar os botões de ação do card */
+.card-actions {
+    display: flex;
+    gap: 1rem; /* Espaço entre os botões */
+    margin-top: 1.5rem; /* Espaço acima dos botões */
+    align-items: center;
+}
+
+/* Garante que o formulário não ocupe espaço extra */
+.card-actions form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para botões primários (reaproveitando) */
+.btn.btn-primary {
+    background: linear-gradient(45deg, var(--cor-mar-profundo), var(--cor-mar-claro));
+    color: #fff;
+    border: none;
+}
+
+/* Novo estilo para o botão de perigo (Remover) */
+.btn.btn-danger {
+    background-color: #D32F2F; /* Um vermelho forte */
+    color: white;
+    border: none;
+}
+
+.btn.btn-danger:hover {
+    background-color: #B71C1C; /* Vermelho mais escuro no hover */
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+}
+/* Cole aqui todo o CSS da tabela da resposta anterior */
+    :root {
+        --cor-areia-fundo: #F4F1EA; --cor-mar-profundo: #005A8D; --cor-mar-claro: #00B4D8;
+        --cor-sol-destaque: #FFC300; --cor-branco-card: #FFFFFF; --cor-texto-principal: #333333;
+        --cor-texto-secundario: #667; --cor-verde-natureza: #4CAF50;
+    }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--cor-areia-fundo); }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .page-title-section{text-align:center;padding:3rem 0}.page-title-section h1{font-size:2.5rem;color:var(--cor-mar-profundo)}.page-title-section p{font-size:1.1rem;color:#667;max-width:600px;margin:.5rem auto 0 auto}
+    .btn-success{background-color:var(--cor-verde-natureza);color:#fff;text-decoration:none;padding:.8rem 1.5rem;border-radius:50px;font-weight:600;display:inline-block;margin-top:1.5rem;transition:all .3s ease}
+    .btn-success:hover{transform:translateY(-3px);box-shadow:0 4px 15px rgba(76,175,80,.4)}
+    
+    /* CSS da busca */
+    .search-container { margin-top: 2rem; }
+    .search-form { display: flex; max-width: 500px; margin: 0 auto; }
+    .search-input { flex-grow: 1; border: 2px solid #ddd; padding: 0.8rem 1.2rem; font-size: 1rem; border-radius: 50px 0 0 50px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+    .search-input:focus { border-color: var(--cor-sol-destaque); box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.3); }
+    .search-button { border: none; background-color: var(--cor-mar-profundo); color: white; padding: 0 1.5rem; border-radius: 0 50px 50px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s; }
+    .search-button svg { width: 22px; height: 22px; fill: white; }
+    
+    /* CSS da tabela */
+    .table-container{background-color:var(--cor-branco-card);border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.07);overflow:hidden;margin-top:2rem}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:1rem;text-align:left;border-bottom:1px solid #eee}.admin-table thead th{background-color:#f8f9fa;font-weight:600;color:var(--cor-mar-profundo);text-transform:uppercase;font-size:.85rem}.admin-table tbody tr:hover{background-color:var(--cor-areia-fundo)}.actions-cell{display:flex;gap:.5rem;align-items:center}.actions-cell a{padding:.4rem .8rem;font-size:.85rem;text-decoration:none;border-radius:6px;color:#fff;font-weight:500;transition:transform .2s}.actions-cell a:hover{transform:scale(1.05)}.btn-info{background-color:var(--cor-mar-claro)}.btn-warning{background-color:#ffa000}.btn-danger{background-color:#d32f2f}
+    
+    /* CSS dos status (CORRIGIDO) */
+    .status-badge{padding:.3rem .8rem;border-radius:50px;font-size:.8rem;font-weight:600;text-transform:uppercase;display:inline-block}.status-ativo{background-color:var(--cor-verde-natureza);color:#fff}.status-inativo{background-color:#757575;color:#fff}.status-pendente{background-color:var(--cor-sol-destaque);color:#333}
