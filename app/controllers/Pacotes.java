@@ -38,9 +38,15 @@ public class Pacotes extends Controller {
 
         flash.success("Pacote '%s' salvo com sucesso!", pacote.nome);
         // Redireciona para a página de listagem
-        lista(null); 
+        detalhar(pacote.id); 
 		
 
+	}
+
+	public static void detalhar(Long id) {
+		PacoteTuristico pacote = PacoteTuristico.findById(id);
+		render(pacote);
+		
 	}
 
 	public static void inicio() {
@@ -52,16 +58,42 @@ public class Pacotes extends Controller {
 		
 		if(termo == null) {
 			pacotes = PacoteTuristico.find("status <> ?1", Status.INATIVO).fetch();
+		}else {
+			   // Se HÁ um termo de busca, executa a consulta complexa
+            String termoBusca = "%" + termo.toLowerCase() + "%";
+            
+            pacotes = PacoteTuristico.find(
+                // A consulta JPQL é dividida em várias linhas para melhor leitura
+                "SELECT DISTINCT p FROM PacoteTuristico p JOIN p.atividades a " +
+                "WHERE p.status <> ?1 AND (LOWER(p.nome) LIKE ?2 OR LOWER(a.nome) LIKE ?2)"
+                , Status.INATIVO, termoBusca
+            ).fetch();
 		}
 		
-		pacotes = PacoteTuristico.find("status <> ?1", Status.INATIVO).fetch();
-		render(pacotes);
+		
+		render(pacotes,termo);
 	}
 	
 	public static void editar(Long id) {
-		PacoteTuristico p = PacoteTuristico.findById(id);
+		
+		PacoteTuristico pacote = PacoteTuristico.findById(id);
 		List<Atividade> a = Atividade.findAll();
-		renderTemplate("Pacotes/form.html",p,a);
+		renderTemplate("Pacotes/form.html", a, pacote);
+		
+	}
+	
+public static void excluir(Long id) {
+		
+	PacoteTuristico pacote = PacoteTuristico.findById(id);
+
+    if (pacote != null) {
+        pacote.status = Status.INATIVO;
+        pacote.save();
+        flash.success("Pacote '%s' foi removido com sucesso.", pacote.nome);
+    } else {
+        flash.error("Pacote não encontrado.");
+    }
+    lista(null);
 		
 	}
 	

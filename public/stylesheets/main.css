@@ -1,0 +1,46 @@
+.alert {
+    font-family: 'Poppins', sans-serif;
+    border-radius: 12px; /* Bordas arredondadas para combinar com os cards */
+    padding: 1.25rem;    /* Espaçamento interno generoso */
+    margin: 1.5rem 0;  /* Espaço acima e abaixo do alerta */
+    border-width: 2px;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Estilo para o alerta de SUCESSO */
+.alert-success {
+    background-color: #E8F5E9; /* Um verde bem claro e suave, como a vegetação da praia */
+    border-color: var(--cor-verde-natureza);
+    color: #1B5E20; /* Um tom de verde escuro para o texto, garantindo legibilidade */
+}
+
+.alert-success strong {
+    color: #1B5E20;
+}
+
+
+/* Estilo para o alerta de ERRO */
+.alert-danger {
+    background-color: #FFEBEE; /* Um vermelho/rosa bem claro */
+    border-color: #C62828;   /* Um vermelho forte para a borda */
+    color: #B71C1C;          /* Um vermelho escuro para o texto */
+}
+
+.alert-danger strong {
+    color: #B71C1C;
+}
+
+/* Estilo para o botão de fechar (X) */
+.alert .btn-close {
+    margin-left: auto; /* Empurra o botão para a direita */
+    padding: 1.25rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.alert .btn-close:hover {
+    opacity: 1;
+}

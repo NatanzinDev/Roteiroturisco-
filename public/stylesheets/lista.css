@@ -67,3 +67,36 @@
         .btn { background: linear-gradient(45deg, var(--cor-mar-profundo), var(--cor-mar-claro)); color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; display: block; margin-top: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0, 120, 182, 0.4); }
         .main-footer { background-color: var(--cor-mar-profundo); color: #fff; text-align: center; padding: 2rem 0; margin-top: 2rem; }
+        
+        /* Container para alinhar os botões de ação do card */
+.card-actions {
+    display: flex;
+    gap: 1rem; /* Espaço entre os botões */
+    margin-top: 1.5rem; /* Espaço acima dos botões */
+    align-items: center;
+}
+
+/* Garante que o formulário não ocupe espaço extra */
+.card-actions form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para botões primários (reaproveitando) */
+.btn.btn-primary {
+    background: linear-gradient(45deg, var(--cor-mar-profundo), var(--cor-mar-claro));
+    color: #fff;
+    border: none;
+}
+
+/* Novo estilo para o botão de perigo (Remover) */
+.btn.btn-danger {
+    background-color: #D32F2F; /* Um vermelho forte */
+    color: white;
+    border: none;
+}
+
+.btn.btn-danger:hover {
+    background-color: #B71C1C; /* Vermelho mais escuro no hover */
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+}

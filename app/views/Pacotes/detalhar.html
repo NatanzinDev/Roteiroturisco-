@@ -1,0 +1,60 @@
+#{extends 'main.html' /}
+#{set title:'Detalhes do pacote' /}
+
+ <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/detalhar.css'}">
+ 
+  <main class="container">
+        
+        <div class="detalhe-header">
+            <h1>${pacote.nome}</h1>
+
+            <div class="page-actions">
+                <a href="@{Pacotes.editar(pacote.id)}" class="btn btn-primary">Editar Pacote</a>
+                <a href="@{Pacotes.lista}" class="btn btn-secondary">Voltar para a Listagem</a>
+                
+            </div>
+        </div>
+
+        <div class="detalhe-grid">
+            <div class="detalhe-main">
+                <section>
+                    <h2>Descrição</h2>
+                    <p class="descricao">${pacote.descricao}</p>
+                </section>
+
+                <section>
+                    <h2>Atividades Inclusas</h2>
+                    <ul class="atividades-detalhe-list">
+                        #{list items:pacote.atividades, as:'atividade'}
+                            <li>
+                                <svg><use href="#icon-check"/></svg>
+                                ${atividade.nome}
+                            </li>
+                        #{/list}
+                    </ul>
+                </section>
+            </div>
+
+            <aside class="detalhe-sidebar">
+                <h3>Detalhes Rápidos</h3>
+                <div class="sidebar-item">
+                    <svg><use href="#icon-tag"/></svg>
+                    <div>
+                        <strong>Preço:</strong> R$ ${pacote.preco.format('##0.00')}
+                    </div>
+                </div>
+                <div class="sidebar-item">
+                    <svg><use href="#icon-clock"/></svg>
+                    <div>
+                        <strong>Duração:</strong> ${pacote.duracao}
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+    </main>
+
+
+ 
+
+  

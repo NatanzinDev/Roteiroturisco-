@@ -24,13 +24,17 @@ public class PacoteTuristico extends Model{
 	@JoinTable(name="pacote_atividade")
 	public List<Atividade> atividades ;
 
-	public PacoteTuristico(String nome, Double preco, int duracao, String descricao, List<Atividade> atividades) {
+	public PacoteTuristico(String nome, Double preco, int duracao, String descricao) {
 		super();
 		this.nome = nome;
 		this.preco = preco;
 		this.duracao = duracao;
 		this.descricao = descricao;
-		this.atividades = atividades;
+	
+		this.status = Status.ATIVO;
+	}
+	
+	public PacoteTuristico() {
 		this.status = Status.ATIVO;
 	}
 	

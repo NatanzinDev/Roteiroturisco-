@@ -1,55 +1,61 @@
- #{extends 'main.html' /}
-#{set title:'Gostoso Destinos' /}
+ #{extends 'main.html' /} #{set title:'Gostoso Destinos' /}
 
- <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/lista.css'}">
- 
- <main>
-    <section class="page-title-section">
-        <div class="container">
-            <h1>Roteiros Incríveis em Gostoso</h1>
-            <p>Encontre o pacote perfeito para sua viagem. Cada roteiro foi pensado para proporcionar experiências únicas e memoráveis.</p>
-            
-            <div class="search-container">
-                <form action="@{Pacotes.lista}" method="GET" class="search-form">
-                    <input type="search" name="termo" class="search-input" placeholder="Buscar por nome ou atividade..." value="${termo}">
-                    <button type="submit" class="search-button">
-                        <svg><use href="#icon-search"/></svg>
-                    </button>
-                </form>
-            </div>
-            </div>
-    </section>
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/lista.css'}">
 
-    <div class="container">
-        <div class="pacotes-grid">
-            
-            #{list items:pacotes, as:'pacote'}
-                <div class="pacote-card">
-                    <div class="pacote-card-content">
-                        <h3>${pacote.nome}</h3>
+<main>
+	<section class="page-title-section">
+		<div class="container">
+			<h1>Roteiros Incríveis em Gostoso</h1>
+			<p>Encontre o pacote perfeito para sua viagem. Cada roteiro foi
+				pensado para proporcionar experiências únicas e memoráveis.</p>
 
-                        <div class="pacote-meta">
-                            <span class="meta-item"><svg><use href="#icon-clock"/></svg> ${pacote.duracao}</span>
-                            <span class="meta-item"><svg><use href="#icon-tag"/></svg> R$ ${pacote.preco.format('##0.00')}</span>
-                        </div>
+			<div class="search-container">
+				<form action="@{Pacotes.lista}" method="GET" class="search-form">
+					<input type="search" name="termo" class="search-input"
+						placeholder="Buscar por nome ou atividade..." value="${termo}">
+					<button type="submit" class="search-button">
+						<svg>
+							<use href="#icon-search" /></svg>
+					</button>
+				</form>
+			</div>
+		</div>
+	</section>
 
-                        <ul class="atividades-list">
-                            <h4>Atividades Inclusas:</h4>
-                            
-                            #{list items:pacote.atividades, as:'atividade'}
-                                <li><svg><use href="#icon-check"/></svg> ${atividade.nome}</li>
-                            #{/list}
+	<div class="container">
+		<div class="pacotes-grid">
 
-                        </ul>
-                        <a href="@{Pacotes.lista}" class="btn">Ver Detalhes</a>
-                    </div>
-                </div>
-            #{/list}
-            #{else}
-                <p class="sem-resultados">Nenhum pacote encontrado com os critérios de busca.</p>
-            #{/else}
-            </div>
-    </div>
+			#{list items:pacotes, as:'pacote'}
+			<div class="pacote-card">
+				<div class="pacote-card-content">
+					<h3>${pacote.nome}</h3>
+
+					<div class="pacote-meta">
+						<span class="meta-item"><svg>
+								<use href="#icon-clock" /></svg> ${pacote.duracao}</span> <span
+							class="meta-item"><svg>
+								<use href="#icon-tag" /></svg> R$ ${pacote.preco.format('##0.00')}</span>
+					</div>
+
+					<ul class="atividades-list">
+						<h4>Atividades Inclusas:</h4>
+
+						#{list items:pacote.atividades, as:'atividade'}
+						<li><svg>
+								<use href="#icon-check" /></svg> ${atividade.nome}</li> #{/list}
+
+					</ul>
+					<a href="@{Pacotes.detalhar(pacote.id)}" class="btn">Ver Detalhes</a>
+						 <a href="@{Pacotes.excluir(pacote.id)}"
+						class="btn btn-danger"> Remover </a>
+				</div>
+			</div>
+			#{/list} #{else}
+			<p class="sem-resultados">Nenhum pacote encontrado com os
+				critérios de busca.</p>
+			#{/else}
+		</div>
+	</div>
 </main>
 
-    
