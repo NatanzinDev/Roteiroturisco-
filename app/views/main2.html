@@ -20,13 +20,6 @@
             </nav>
         </div>
     </header>
-    		
-    		#{if session['usuario']}
-						<p>
-							${session['usuario']}
-							<a href="@{Login.logout}">Logout</a>
-						</p>
-					#{/if}
     	
     		#{if flash.error}
 					  <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -45,9 +38,7 @@
     	<div>
         #{doLayout /}
         </div>
-        <footer class="main-footer">
-        <p>&copy; 2025 Gostoso Destinos. Todos os direitos reservados.</p>
-    </footer>
+      
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

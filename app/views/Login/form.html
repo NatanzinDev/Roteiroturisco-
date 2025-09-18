@@ -1,0 +1,27 @@
+#{extends 'main2.html' /} #{if p} #{set title:'Edição de pacote' /}
+#{/if} #{else} #{set title:' Página de login' /} #{/else}
+
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/form.css'}">
+
+<main class="container-cadastro">
+
+
+	<form action="@{Login.logar()}" method="POST">
+
+		
+
+		<div class="form-group">
+			<label for="email">Email</label> <input type="text" id="email" name="email" value="" required>
+		</div>
+		
+		<div class="form-group">
+			<label for="senha">Senha</label> <input type="password" id="senha" name="senha" value="" required>
+		</div>
+
+	
+
+		<button type="submit" class="btn-submit">Salvar Pacote</button>
+	</form>
+</main>
+

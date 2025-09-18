@@ -7,7 +7,9 @@ import models.Atividade;
 import models.PacoteTuristico;
 import models.Status;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(Seguranca.class)
 public class Pacotes extends Controller {
 
 	public static void form() {

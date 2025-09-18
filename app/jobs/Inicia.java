@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import models.Atividade;
 import models.PacoteTuristico;
 import models.Status;
+import models.Usuario;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
@@ -19,6 +20,9 @@ public class Inicia extends Job{
 			Atividade d = new Atividade("Aula de Kitesurf");
 			Atividade e = new Atividade("Aventura de Quadriciclo");
 			Atividade f = new Atividade("Cavalgada na Praia");
+			
+			Usuario root = new Usuario("root","root@gmail.com","123456");
+			root.save();
 			
 			a.save();
 			b.save();
