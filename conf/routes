@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                                       Pacotes.form
+GET     /                                       Login.form
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

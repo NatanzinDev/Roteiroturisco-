@@ -20,7 +20,9 @@ public class Login extends Controller {
 	}
 	
 	public static void logout() {
-		
+		session.clear(); //limpar a sessão
+		flash.success("Você saiu do sistema!");
+		form();
 	}
 	
 	public static void form() {

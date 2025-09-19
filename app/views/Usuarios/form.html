@@ -1,19 +1,19 @@
 #{extends 'main2.html' /}
-#{set title:'Página de Login' /}
+#{set title:'Cadastro de Usuário' /}
 
 #{set 'moreStyles'}
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/form.css'}">
     <style>
-        /* Estilos para centralizar e formatar o formulário de login */
+        /* Reutilizando e adaptando os estilos do formulário de login */
         .container-cadastro {
             background-color: #FFFFFF;
             padding: 2.5rem 3rem;
             border-radius: 15px;
             box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px; /* Tamanho ideal para um form de login */
+            max-width: 550px; /* Um pouco mais largo para acomodar mais campos */
             margin: 4rem auto;
-            border-top: 5px solid #00B4D8;
+            border-top: 5px solid #4CAF50; /* Verde para diferenciar do login */
         }
         .header-formulario { text-align: center; margin-bottom: 2rem; }
         .header-formulario h1 { color: #005A8D; font-weight: 700; font-size: 2rem; }
@@ -21,33 +21,43 @@
         .form-group label { display: block; margin-bottom: 0.5rem; color: #005A8D; font-weight: 600; }
         .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
         .btn-submit { width: 100%; padding: 1rem; background: linear-gradient(45deg, #005A8D, #00B4D8); color: #FFFFFF; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; }
-        .register-link { text-align: center; margin-top: 1.5rem; }
-        .register-link a { color: #005A8D; font-weight: 500; text-decoration: none; }
-        .register-link a:hover { text-decoration: underline; }
+        .login-link { text-align: center; margin-top: 1.5rem; }
+        .login-link a { color: #005A8D; font-weight: 500; text-decoration: none; }
+        .login-link a:hover { text-decoration: underline; }
     </style>
 #{/set}
 
 <main class="container-cadastro">
     <header class="header-formulario">
-        <h1>Acesso ao Sistema</h1>
+        <h1>Crie sua Conta</h1>
     </header>
 
-    <form action="@{Login.logar()}" method="POST">
+    <form action="@{Usuarios.salvar()}" method="POST">
+
+        <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" value="" required>
+        </div>
+        
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" value="" required>
         </div>
-        
+
         <div class="form-group">
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" value="" required>
         </div>
 
-        <button type="submit" class="btn-submit">Entrar</button>
-    </form>
+        <div class="form-group">
+            <label for="confirmarSenha">Confirme sua Senha</label>
+            <input type="password" id="confirmarSenha" name="senha2" value="" required>
+        </div>
 
-    <div class="register-link">
-        <p>Ainda não tem uma conta? <a href="@{Usuarios.form()}">Cadastre-se aqui</a></p>
+        <button type="submit" class="btn-submit">Cadastrar</button>
+    </form>
+    
+    <div class="login-link">
+        <p>Já possui uma conta? <a href="@{Login.form()}">Faça o login</a></p>
     </div>
 </main>
-
