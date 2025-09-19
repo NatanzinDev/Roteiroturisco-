@@ -15,6 +15,7 @@ public class Usuarios extends Controller{
 			u.email = email;
 			u.nome = nome;
 			u.senha = senha;
+			u.save();
 			flash.success("Usuário cadastrado com sucesso!");
 			session.put("usuario", u.email);
 			Pacotes.lista(null);
