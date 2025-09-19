@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import models.Atividade;
 import models.PacoteTuristico;
+import models.Perfil;
 import models.Status;
 import models.Usuario;
 import play.jobs.Job;
@@ -22,7 +23,11 @@ public class Inicia extends Job{
 			Atividade f = new Atividade("Cavalgada na Praia");
 			
 			Usuario root = new Usuario("root","root@gmail.com","123456");
+			root.perfil = Perfil.ADMINISTRADOR;
 			root.save();
+			
+			Usuario teste = new Usuario("teste","teste@gmail.com","123456");
+			teste.save();
 			
 			a.save();
 			b.save();

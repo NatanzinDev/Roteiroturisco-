@@ -8,6 +8,7 @@ import models.PacoteTuristico;
 import models.Status;
 import play.mvc.Controller;
 import play.mvc.With;
+import seguranca.Administrador;
 
 @With(Seguranca.class)
 public class Pacotes extends Controller {
@@ -98,7 +99,7 @@ public static void excluir(Long id) {
     	listaadm(null);
 		
 	}
-	
+@Administrador	
 public static void listaadm(String termo) {
 	List<PacoteTuristico> pacotes = null;
 	

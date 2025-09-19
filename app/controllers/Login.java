@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Perfil;
 import models.Usuario;
 import play.mvc.Controller;
 
@@ -13,6 +14,10 @@ public class Login extends Controller {
 			form();
 		}else {
 			session.put("usuario", u.email);
+			session.put("usuarioperfil", u.perfil.name());
+			if(session.get("usuarioperfil").equals(Perfil.ADMINISTRADOR.name())) {
+				session.put("adm", u.perfil.name());
+			}
 			flash.success("Login bem sucessido.");
 			Pacotes.lista(null);
 		}
