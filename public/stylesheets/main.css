@@ -45,3 +45,34 @@
     opacity: 1;
 }
 
+/*
+ * ===================================================================
+ * Estilização das Mensagens de Validação (Erro)
+ * ===================================================================
+*/
+
+/* O Play Framework cria um <span class="error"> 
+  para cada mensagem de validação.
+*/
+span.error {
+    display: block;        /* Faz a mensagem aparecer em uma linha própria */
+    color: #D9534F;        /* Um tom de vermelho para o erro (Bootstrap 'danger') */
+    font-size: 0.9em;      /* Fonte um pouco menor que a do label */
+    font-weight: 500;      /* Fonte com peso médio para dar destaque */
+    margin-top: 5px;       /* Pequeno espaço acima da mensagem */
+}
+
+/* Opcional: Se o campo com erro (input, textarea) também recebe uma 
+  classe 'error', este CSS pode adicionar uma borda vermelha.
+*/
+.error {
+    border-color: #D9534F !important;
+}
+
+/* Para os checkboxes, o erro geralmente fica acima do grupo,
+  então adicionamos um espaço abaixo.
+*/
+.atividades-fieldset span.error {
+    margin-bottom: 10px;
+}
+

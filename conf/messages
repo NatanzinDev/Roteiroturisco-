@@ -4,3 +4,6 @@
 validation.required=Este campo é obrigatório
 validation.equals=Senhas incorretas
 validation.email=Preencha com um email válido
+validation.min=Valor informado inválido
+validation.max=Passeio não pode ser maior que 10 dias 
+validation.minSize=Descrição tem que conter pelo menos 20 digitos

@@ -8,18 +8,31 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import play.data.validation.Max;
+import play.data.validation.Min;
+import play.data.validation.MinSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 public class PacoteTuristico extends Model{
+	@Required
 	public String nome;
+	@Required
+	@Min(0)
 	public Double preco;
-	public int duracao;
+	@Required
+	@Min(0)
+	@Max(10)
+	public Integer duracao;
+	@Required
+	@MinSize(20)
 	public String descricao;
 	
 	@Enumerated(EnumType.STRING)
 	public Status status;
 	
+	@Required
 	@ManyToMany
 	@JoinTable(name="pacote_atividade")
 	public List<Atividade> atividades ;

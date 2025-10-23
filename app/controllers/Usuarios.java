@@ -16,22 +16,20 @@ public class Usuarios extends Controller{
 	}
 	
 	public static void salvar(Usuario u, String senha) {
-		System.out.println(u.confirmarsenha);
-		System.out.println(senha);
-		System.out.println("-------");
+	
 		
 		if(senha.equals("") == false) {
 			u.senha = senha;
 		}
 		
-		System.out.println(u.confirmarsenha);
-		System.out.println(senha);
+	
 		
 		validation.valid(u);
 
 		if (validation.hasErrors()) {
 			validation.keep();
 			Cache.set("usuario", u);
+			params.flash();
 			flash.error("Falha ao tentar criar o usuário");
 			form();
 		}

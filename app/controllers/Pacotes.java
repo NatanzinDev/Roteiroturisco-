@@ -3,6 +3,8 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import models.Atividade;
 import models.PacoteTuristico;
 import models.Status;
@@ -19,22 +21,47 @@ public class Pacotes extends Controller {
 	}
 
 	public static void salvar(PacoteTuristico pacote, Long[] atividadesIds) {
+		
+		if(atividadesIds != null) {
+			for(int i = 0; i < atividadesIds.length -1 ; i++) {
+				validation.valid(atividadesIds[i]);
+				if(validation.hasErrors()) {
+					validation.keep();
+					params.flash();
+					flash.error("Erro ao cadastrar o pacote");
+					form();
+				}
+			}
+		}
+		
+		
+		   pacote.atividades = new ArrayList<Atividade>();
 
+	        // Verifica se algum checkbox foi marcado
+	        if (atividadesIds != null) {
+	            // Itera sobre o array de IDs que veio do formulário
+	            for (Long id : atividadesIds) {
+	                //  Para cada ID, busca a Atividade correspondente no banco
+	                Atividade atividade = Atividade.findById(id);
+	                if (atividade != null) {
+	                    
+	                    pacote.atividades.add(atividade);
+	                }
+	            }
+	        }
+	        
+	     validation.valid(pacote);
+		
+		if(validation.hasErrors()) {
+			validation.keep();
+			params.flash();
+			flash.error("Erro ao cadastrar o pacote");
+			form();
+		}
+		
+		
 		 
-        pacote.atividades = new ArrayList<Atividade>();
-
-        // Verifica se algum checkbox foi marcado
-        if (atividadesIds != null) {
-            // Itera sobre o array de IDs que veio do formulário
-            for (Long id : atividadesIds) {
-                //  Para cada ID, busca a Atividade correspondente no banco
-                Atividade atividade = Atividade.findById(id);
-                if (atividade != null) {
-                    
-                    pacote.atividades.add(atividade);
-                }
-            }
-        }
+     
 
         
         pacote.save();
