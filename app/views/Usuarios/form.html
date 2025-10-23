@@ -11,9 +11,9 @@
             border-radius: 15px;
             box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 550px; /* Um pouco mais largo para acomodar mais campos */
+            max-width: 550px;
             margin: 4rem auto;
-            border-top: 5px solid #4CAF50; /* Verde para diferenciar do login */
+            border-top: 5px solid #4CAF50;
         }
         .header-formulario { text-align: center; margin-bottom: 2rem; }
         .header-formulario h1 { color: #005A8D; font-weight: 700; font-size: 2rem; }
@@ -24,6 +24,16 @@
         .login-link { text-align: center; margin-top: 1.5rem; }
         .login-link a { color: #005A8D; font-weight: 500; text-decoration: none; }
         .login-link a:hover { text-decoration: underline; }
+
+        /* --- NOVO CSS ADICIONADO --- */
+        /* Estilo para as mensagens de erro de validação */
+        span.error {
+            display: block; /* Faz a mensagem pular para a linha de baixo */
+            color: #D9534F; /* Tom de vermelho para o erro */
+            font-size: 0.9em;
+            margin-top: 5px;
+            font-weight: 500;
+        }
     </style>
 #{/set}
 
@@ -35,23 +45,31 @@
     <form action="@{Usuarios.salvar()}" method="POST">
 
         <div class="form-group">
-            <label for="nome">Nome Completo</label>
-            <input type="text" id="nome" name="nome" value="" required>
+            <label for="nome">Nome do usuário</label>
+            <input type="text" id="nome" name="u.nome" value="${flash['usuario.nome']}" >
+            
+            #{error 'u.nome' /}
         </div>
         
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="" required>
+            <input type="text" id="email" name="u.email" value="${flash['usuario.email']}" >
+            
+            #{error 'u.email' /}
         </div>
 
         <div class="form-group">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" value="" required>
+            <input type="password" id="senha" name="senha" value="" >
+            
+            #{error 'u.senha' /}
         </div>
 
         <div class="form-group">
             <label for="confirmarSenha">Confirme sua Senha</label>
-            <input type="password" id="confirmarSenha" name="senha2" value="" required>
+            <input type="password" id="confirmarSenha" name="u.confirmarsenha" value="" >
+            
+          
         </div>
 
         <button type="submit" class="btn-submit">Cadastrar</button>

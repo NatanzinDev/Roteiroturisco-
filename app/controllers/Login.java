@@ -2,12 +2,13 @@ package controllers;
 
 import models.Perfil;
 import models.Usuario;
+import play.libs.Crypto;
 import play.mvc.Controller;
 
 public class Login extends Controller {
 	public static void logar(String email, String senha) {
 		Usuario u = Usuario.find("email = ?1 and senha = ?2",
-              	email, senha).first();
+              	email, Crypto.passwordHash(senha)).first();
 		
 		if(u == null) {
 			flash.error("Erro ao tentar logar");
