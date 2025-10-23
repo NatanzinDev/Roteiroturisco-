@@ -20,6 +20,10 @@ public class Usuarios extends Controller{
 		
 		if(senha.equals("") == false) {
 			u.senha = senha;
+			
+			if(senha.length() < 6) {
+				validation.addError("u.senha", "A senha de conter pelo menos 6 digitos");
+			}
 		}
 		
 	
