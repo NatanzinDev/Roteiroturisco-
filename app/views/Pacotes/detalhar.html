@@ -10,7 +10,10 @@
             <h1>${pacote.nome}</h1>
 
             <div class="page-actions">
-                <a href="@{Pacotes.editar(pacote.id)}" class="btn btn-primary">Editar Pacote</a>
+				 #{if session['adm']}
+				  <a href="@{Pacotes.editar(pacote.id)}" class="btn btn-primary">Editar Pacote</a>
+    #{/if}
+               
                 <a href="@{Pacotes.listaadm}" class="btn btn-secondary">Voltar para a Listagem</a>
                 
             </div>

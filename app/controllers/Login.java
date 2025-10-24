@@ -20,7 +20,7 @@ public class Login extends Controller {
 				session.put("adm", u.perfil.name());
 			}
 			flash.success("Login bem sucessido.");
-			Pacotes.lista(null);
+			Pacotes.inicio();
 		}
 		
 	}
