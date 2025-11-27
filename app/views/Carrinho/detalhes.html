@@ -1,0 +1,196 @@
+#{extends 'main.html' /}
+#{set title:'Meu Carrinho' /}
+
+#{set 'moreStyles'}
+<style>
+    .cart-container {
+        padding: 4rem 0;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .cart-header {
+        margin-bottom: 2rem;
+        border-bottom: 2px solid #005A8D;
+        padding-bottom: 1rem;
+    }
+    
+    .cart-header h1 {
+        color: #005A8D;
+        font-weight: 700;
+    }
+
+    /* Tabela de Itens */
+    .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    
+    .cart-table th {
+        background-color: #f8f9fa;
+        color: #005A8D;
+        padding: 1.2rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    
+    .cart-table td {
+        padding: 1.2rem;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+    }
+    
+    .item-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .item-icon {
+        width: 50px;
+        height: 50px;
+        background-color: #e3f2fd;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #005A8D;
+    }
+    
+    .btn-remove {
+        color: #e44d3a;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    
+    .btn-remove:hover { color: #c0392b; }
+
+    /* Resumo do Pedido */
+    .cart-summary {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .total-line {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+    
+    .total-line span { color: #4CAF50; }
+    
+    .cart-actions {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .btn-continue {
+        padding: 12px 24px;
+        border: 1px solid #005A8D;
+        color: #005A8D;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .btn-continue:hover {
+        background-color: #f0f8ff;
+        color: #005A8D;
+    }
+    
+    .btn-checkout {
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #005A8D, #00B4D8);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0,90,141,0.2);
+        transition: transform 0.2s;
+    }
+    
+    .btn-checkout:hover {
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .empty-cart {
+        text-align: center;
+        padding: 4rem;
+        color: #777;
+    }
+</style>
+#{/set}
+
+<main class="container">
+    <div class="cart-container">
+        <header class="cart-header">
+            <h1>Seu Carrinho de Compras</h1>
+        </header>
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Pacote</th>
+                    <th>Duração</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="item-info">
+                            <div class="item-icon">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm1 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm-1 2a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Rota do Sol e Vento</strong><br>
+                                <small class="text-muted">Inclui: Buggy, Kitesurf</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>3 dias</td>
+                    <td>R$ 950,00</td>
+                    <td>
+                        <button class="btn-remove" title="Remover item">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <div class="total-line">
+                Total: <span>R$ 950,00</span>
+            </div>
+            <div class="cart-actions">
+                <a href="@{Pacotes.lista()}" class="btn-continue">Continuar Comprando</a>
+                <a href="#" class="btn-checkout">Finalizar Compra</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+  
