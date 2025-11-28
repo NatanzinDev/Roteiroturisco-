@@ -9,3 +9,8 @@
    * Entidade A: PacoteTuristico.
 
    * Entidade B: Atividade (Ex: "Passeio de Buggy", "Visita aos Parrachos", "Pôr do Sol em Tourinhos", "Aula de Kitesurf").
+
+
+Upload de fotos 
+Mudança de nome
+ajax
