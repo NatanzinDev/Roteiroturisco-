@@ -19,6 +19,9 @@ public class Login extends Controller {
 			if(session.get("usuarioperfil").equals(Perfil.ADMINISTRADOR.name())) {
 				session.put("adm", u.perfil.name());
 			}
+			if(session.get("usuarioperfil").equals(Perfil.CLIENTE.name())) {
+				session.put("cliente", u.perfil.name());
+			}
 			flash.success("Login bem sucessido.");
 			Pacotes.inicio();
 		}

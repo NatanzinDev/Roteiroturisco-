@@ -3,72 +3,82 @@
 
 <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/inicio.css'}">
 
+<main>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Explore os Tesouros de São Miguel do Gostoso</h1>
+            <p>Montamos roteiros inesquecíveis que combinam aventura, relaxamento e a cultura vibrante do litoral potiguar. Sua próxima grande história começa aqui.</p>
+            
+            <a href="#atividades" class="btn">Descubra as Atividades</a>
+        </div>
+    </section>
 
+    <section id="atividades" class="atividades-section container">
+        <h2 class="section-title">Viva Essas Experiências</h2>
+        <p class="section-subtitle">Das dunas emocionantes às águas calmas dos parrachos, cada atividade é uma oportunidade única de se conectar com a natureza exuberante de Gostoso.</p>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1>Explore os Tesouros de São Miguel do Gostoso</h1>
-                <p>Montamos roteiros inesquecíveis que combinam aventura, relaxamento e a cultura vibrante do litoral potiguar. Sua próxima grande história começa aqui.</p>
-                <a href="#atividades" class="btn">Descubra as Atividades</a>
+        <div class="atividades-grid">
+            
+            <div class="card-atividade">
+                <img src="@{'/public/images/galinhos.jpg'}" alt="Passeio em Galinhos">
+                <div class="card-content">
+                    <h3>Passeio para Galinhos</h3>
+                    <p>Uma escapada inesquecível até a península de Galinhos. Navegue pelo manguezal, conheça as salinas e desfrute de um visual paradisíaco isolado do mundo.</p>
+                </div>
             </div>
-        </section>
 
-        <section id="atividades" class="atividades-section container">
-            <h2 class="section-title">Viva Essas Experiências</h2>
-            <p class="section-subtitle">Das dunas emocionantes às águas calmas dos parrachos, cada atividade é uma oportunidade única de se conectar com a natureza exuberante de Gostoso.</p>
-
-            <div class="atividades-grid">
-                <div class="card-atividade">
-                    <img src="@{'/public/images/buggy.jpeg'}" alt="Pessoas andando de buggy nas dunas">
-                    <div class="card-content">
-                        <h3>Passeio de Buggy</h3>
-                        <p>Sinta a emoção e o vento no rosto explorando dunas, praias desertas e lagoas de águas cristalinas. Uma aventura clássica e indispensável.</p>
-                    </div>
+            <div class="card-atividade">
+                <img src="@{'/public/images/quadri.jpg'}" alt="Trilha nas dunas">
+                <div class="card-content">
+                    <h3>Trilha nas dunas</h3>
+                    <p>Desbrave a imensidão das areias potiguares. Uma experiência sensorial única, caminhando ou percorrendo as dunas móveis com vista privilegiada do horizonte.</p>
                 </div>
-
-                <div class="card-atividade">
-                    <img src="@{'/public/images/kite.jpg'}" alt="Praticante de Kitesurf no mar">
-                    <div class="card-content">
-                        <h3>Aula de Kitesurf</h3>
-                        <p>Aproveite os ventos perfeitos de Gostoso para aprender a planar sobre as águas. Uma experiência de liberdade e adrenalina pura.</p>
-                    </div>
-                </div>
-
-                <div class="card-atividade">
-                    <img src="@{'/public/images/parracho.jpeg'}" alt="Mergulho em recifes de corais (Parrachos)">
-                    <div class="card-content">
-                        <h3>Visita aos Parrachos</h3>
-                        <p>Navegue até os recifes de corais e mergulhe em piscinas naturais repletas de vida marinha. Um paraíso submerso esperando por você.</p>
-                    </div>
-                </div>
-
-                 <div class="card-atividade">
-                    <img src="@{'/public/images/tourinhos.jpg'}" alt="Pôr do sol na praia de Tourinhos">
-                    <div class="card-content">
-                        <h3>Pôr do Sol em Tourinhos</h3>
-                        <p>Contemple um dos mais belos espetáculos da natureza, onde o sol se despede no mar, colorindo o céu e as dunas petrificadas.</p>
-                    </div>
-                </div>
-
-                <div class="card-atividade">
-                    <img src="@{'/public/images/cavalgada.jpg'}" alt="Pessoas andando a cavalo na praia">
-                    <div class="card-content">
-                        <h3>Cavalgada na Praia</h3>
-                        <p>Percorra a orla sentindo a brisa do mar em um passeio tranquilo e relaxante a cavalo, conectando-se com a paisagem de forma única.</p>
-                    </div>
-                </div>
-
-                <div class="card-atividade">
-                    <img src="@{'/public/images/quadri.jpeg'}" alt="Pessoa pilotando quadriciclo em trilha">
-                    <div class="card-content">
-                        <h3>Aventura de Quadriciclo</h3>
-                        <p>Explore trilhas e caminhos alternativos com a emoção de pilotar um quadriciclo, descobrindo paisagens incríveis pelo interior da região.</p>
-                    </div>
-                </div>
-
             </div>
-        </section>
-    </main>
+
+            <div class="card-atividade">
+                <img src="@{'/public/images/parracho.jpeg'}" alt="Mergulho em Perobas">
+                <div class="card-content">
+                    <h3>Passeio para Perobas</h3>
+                    <p>Mergulhe nas águas cristalinas dos parrachos de Perobas. Um santuário ecológico de águas rasas, perfeito para snorkeling e relaxamento em alto mar.</p>
+                </div>
+            </div>
+
+            <div class="card-atividade">
+                <img src="@{'/public/images/tourinhos.jpg'}" alt="Pôr do sol na praia de Tourinhos">
+                <div class="card-content">
+                    <h3>Pôr do Sol em Tourinhos</h3>
+                    <p>Contemple um dos mais belos espetáculos da natureza nas falésias petrificadas, onde o sol se despede tocando o mar em um cenário de cinema.</p>
+                </div>
+            </div>
+
+            <div class="card-atividade">
+                <img src="@{'/public/images/cavalgada.jpg'}" alt="Litoral de Gostoso">
+                <div class="card-content">
+                    <h3>Exploração no litoral de Gostoso</h3>
+                    <p>Um tour completo pelas praias desertas e coqueirais que moldam nossa costa. Descubra os segredos, vilas de pescadores e as belezas escondidas da região.</p>
+                </div>
+            </div>
+
+            <div class="card-atividade">
+                <img src="@{'/public/images/quadri.jpeg'}" alt="Pessoa pilotando quadriciclo em trilha">
+                <div class="card-content">
+                    <h3>Aventura de Quadriciclo</h3>
+                    <p>Adrenalina pura pilotando por trilhas off-road, passando por lagoas e terrenos desafiadores no interior, sentindo a liberdade sobre quatro rodas.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-pacotes container" style="text-align: center; margin: 4rem auto; padding: 2rem 0; border-top: 1px solid #eee;">
+        <h2 style="color: #005A8D; margin-bottom: 1rem;">Pronto para viver tudo isso?</h2>
+        <p style="margin-bottom: 2rem; color: #666;">Temos roteiros completos que incluem hospedagem e essas atividades incríveis.</p>
+        
+        <a href="@{Pacotes.lista()}" class="btn" style="padding: 1rem 3rem; font-size: 1.1rem;">
+            Ver Pacotes Disponíveis
+        </a>
+    </section>
+
+</main>
 
     
