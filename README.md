@@ -10,7 +10,12 @@
 
    * Entidade B: Atividade (Ex: "Passeio de Buggy", "Visita aos Parrachos", "Pôr do Sol em Tourinhos", "Aula de Kitesurf").
 
+<ol>
+  <li>Upload de fotos</li>
+  <li>Mudança de nome</li>
+  <li>Adição de função ajax</li>
+  <li>Diagrama de caso de uso</li>
+  <li>Lista de requisitos funcionais e não funcionais</li>
+</ol>
+ 
 
-Upload de fotos 
-Mudança de nome
-ajax
