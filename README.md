@@ -16,6 +16,7 @@
   <li>Adição de função ajax</li>
   <li>Diagrama de caso de uso</li>
   <li>Lista de requisitos funcionais e não funcionais</li>
+  <li>Mudar duração para horas</li>
 </ol>
  
 
