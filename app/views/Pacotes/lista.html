@@ -94,10 +94,10 @@
 
                     <div class="card-actions">
                     #{if session['cliente']}
-					 <a href="#" class="btn-adicionar-carrinho">
-                            <svg><use href="#icon-cart-add" /></svg>
-                            Comprar
-                        </a>
+					<button class="btn-adicionar-carrinho" data-id="${pacote.id}">
+        <svg><use href="#icon-cart-add" /></svg>
+        Comprar
+    </button>
 				#{/if}
                        
                         
@@ -132,4 +132,52 @@
         </symbol>
     </defs>
 </svg>
+
+#{set 'moreScripts'}
+<script>
+    $(function() {
+        $('.btn-adicionar-carrinho').click(function(e) {
+            e.preventDefault(); 
+            
+            var botao = $(this);
+            var idPacote = botao.attr('data-id');
+            var conteudoOriginal = botao.html();
+            
+            
+            botao.css('opacity', '0.7').prop('disabled', true).text('Adicionando...');
+
+            
+            $.ajax({
+                url: '@{Carrinho.adicionarAjax()}',
+                type: 'POST',
+                data: { idPacote: idPacote },
+                success: function(response) {
+                    // Atualiza a bolinha vermelha (se você já tiver colocado ela no main.html)
+                    $('.cart-badge').text(response.total).show();
+
+                    // Deixa o botão verde
+                    botao.addClass('btn-sucesso'); 
+                    botao.html('Adicionado!');
+
+                   
+                    setTimeout(function() {
+                        botao.removeClass('btn-sucesso');
+                        botao.html(conteudoOriginal);
+                        botao.css('opacity', '1').prop('disabled', false);
+                    }, 2000);
+                },
+                error: function(xhr) {
+                    if (xhr.status == 401) {
+                        alert("Faça login para comprar!");
+                        window.location.href = "@{Login.form()}";
+                    } else {
+                        alert("Erro ao adicionar.");
+                        botao.html(conteudoOriginal).css('opacity', '1').prop('disabled', false);
+                    }
+                }
+            });
+        });
+    });
+</script>
+#{/set}
 
