@@ -78,7 +78,7 @@
 
                     <div class="pacote-meta">
                         <span class="meta-item">
-                            <svg><use href="#icon-clock" /></svg> ${pacote.duracao} dias
+                            <svg><use href="#icon-clock" /></svg> ${pacote.duracao} Horas
                         </span> 
                         <span class="meta-item">
                             <svg><use href="#icon-tag" /></svg> R$ ${pacote.preco?.format('##0.00')}
@@ -152,10 +152,10 @@
                 type: 'POST',
                 data: { idPacote: idPacote },
                 success: function(response) {
-                    // Atualiza a bolinha vermelha (se você já tiver colocado ela no main.html)
+                    // Atualiza a bolinha vermelha 
                     $('.cart-badge').text(response.total).show();
 
-                    // Deixa o botão verde
+                   
                     botao.addClass('btn-sucesso'); 
                     botao.html('Adicionado!');
 
