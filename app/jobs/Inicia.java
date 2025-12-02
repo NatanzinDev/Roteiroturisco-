@@ -15,12 +15,12 @@ public class Inicia extends Job{
 	 @Override
 	public void doJob() throws Exception {
 		if(Atividade.count() == 0) {
-			Atividade a = new Atividade("Passeio de Buggy");
-			Atividade b = new Atividade("Visita aos Parrachos");
+			Atividade a = new Atividade("Passeio para Galinhos");
+			Atividade b = new Atividade("Trilha nas dunas");
 			Atividade c = new Atividade("Pôr do Sol em Tourinhos");
-			Atividade d = new Atividade("Aula de Kitesurf");
+			Atividade d = new Atividade("Passeio para perobas");
 			Atividade e = new Atividade("Aventura de Quadriciclo");
-			Atividade f = new Atividade("Cavalgada na Praia");
+			Atividade f = new Atividade("Exploração no litoral de gostoso");
 			
 			Usuario root = new Usuario("root","root@gmail.com","123456");
 			root.perfil = Perfil.ADMINISTRADOR;

@@ -1,0 +1,240 @@
+#{extends 'main.html' /}
+#{set title:'Meu Carrinho' /}
+
+#{set 'moreStyles'}
+<style>
+    /* Container Principal */
+        .cart-container {
+            padding: 4rem 0;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Cabeçalho "Seu Carrinho" */
+        .cart-header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #005A8D;
+            padding-bottom: 1rem;
+        }
+        
+        .cart-header h1 {
+            color: #005A8D;
+            font-weight: 700;
+        }
+
+        /* Tabela de Itens */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .cart-table th {
+            background-color: #f8f9fa;
+            color: #005A8D;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .cart-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        
+        /* Ícone e Infos do Produto na Tabela */
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .item-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #005A8D;
+        }
+        
+        /* Botão de Remover (Lixeira) */
+        .btn-remove {
+            color: #e44d3a;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .btn-remove:hover { color: #c0392b; }
+
+        /* Resumo do Pedido (Total e Botões) */
+        .cart-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .total-line {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        
+        .total-line span { color: #4CAF50; }
+        
+        .cart-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Botão Continuar Comprando */
+        .btn-continue {
+            padding: 12px 24px;
+            border: 1px solid #005A8D;
+            color: #005A8D;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-continue:hover {
+            background-color: #f0f8ff;
+            color: #005A8D;
+        }
+        
+        /* Botão Finalizar Compra */
+        .btn-checkout {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #005A8D, #00B4D8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 90, 141, 0.2);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        /* Estilo para quando o carrinho está vazio */
+        .empty-cart {
+            text-align: center;
+            padding: 4rem;
+            color: #777;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Utilitário para alinhar texto à direita */
+        .text-right { text-align: right; }
+    .text-right { text-align: right; }
+</style>
+#{/set}
+
+<main class="container">
+    <div class="cart-container">
+        <header class="cart-header">
+            <h1>Seu Carrinho de Compras</h1>
+        </header>
+
+        #{if carrinho && carrinho.itens && carrinho.itens.size() > 0}
+            
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Pacote</th>
+                        <th>Qtd.</th> <th>Preço Unit.</th>
+                        <th>Subtotal</th> <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #{list items:carrinho.itens, as:'item'}
+                    <tr>
+                        <td>
+                            <div class="item-info">
+                                <div class="item-icon">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm1 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm-1 2a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>${item.pacote.nome}</strong><br>
+                                    <small class="text-muted">${item.pacote.duracao} dias</small>
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <td>
+                            ${item.quantidade}
+                        </td>
+
+                        <td>R$ ${item.precoUnitario?.format('##0.00')}</td>
+                        
+                        <td style="font-weight: bold; color: #333;">
+                            R$ ${(item.precoUnitario * item.quantidade).format('##0.00')}
+                        </td>
+                        
+                        <td>
+                           <a href="@{Carrinho.remover(item.id)}" class="btn-remove" 
+   onclick="return confirm('Tem certeza que deseja remover este item?')" 
+   title="Remover item">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+    </svg>
+</a>
+                        </td>
+                    </tr>
+                    #{/list}
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <div class="total-line">
+                    Total: <span>R$ ${carrinho.getValorTotal().format('##0.00')}</span>
+                </div>
+                <div class="cart-actions">
+                    <a href="@{Pacotes.lista()}" class="btn-continue">Continuar Comprando</a>
+                    <a href="@{Carrinho.finalizarCompra()}" class="btn-checkout">
+    Finalizar pedido
+</a>
+                </div>
+            </div>
+            
+        #{/if}
+        #{else}
+            <div class="empty-cart">
+                <svg width="64" height="64" fill="#ccc" viewBox="0 0 16 16" style="margin-bottom: 20px;">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <h3>Seu carrinho está vazio</h3>
+                <p>Que tal explorar nossos roteiros incríveis?</p>
+                <a href="@{Pacotes.lista()}" class="btn-checkout" style="margin-top: 20px; display: inline-block;">Ver Pacotes</a>
+            </div>
+        #{/else}
+
+    </div>
+</main>
+
+  

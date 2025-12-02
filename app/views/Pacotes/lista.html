@@ -1,77 +1,183 @@
- #{extends 'main.html' /} #{set title:'Gostoso Destinos' /}
+#{extends 'main.html' /} 
+#{set title:'Gostoso Destinos' /}
 
-<link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/lista.css'}">
+#{set 'moreStyles'}
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/lista.css'}">
+<style>
+    /* Estilo do botão de adicionar ao carrinho */
+    .btn-adicionar-carrinho {
+        background-color: white;
+        color: #005A8D;
+        border: 1px solid #005A8D;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: none; /* Remove sublinhado do link */
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        justify-content: center; /* Centraliza texto e ícone */
+    }
+
+    .btn-adicionar-carrinho:hover {
+        background-color: #005A8D;
+        color: white;
+    }
+    
+    .btn-adicionar-carrinho svg {
+        width: 18px; 
+        height: 18px; 
+        fill: currentColor;
+    }
+
+    /* Container para alinhar os dois botões */
+    .card-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    /* Ajuste para os botões ocuparem o mesmo espaço */
+    .card-actions .btn, 
+    .card-actions .btn-adicionar-carrinho {
+        flex: 1;
+        text-align: center;
+        margin-top: 0 !important;
+    }
+</style>
+#{/set}
 
 <main>
-	<section class="page-title-section">
-		<div class="container">
-			<h1>Roteiros Incríveis em Gostoso</h1>
-			<p>Encontre o pacote perfeito para sua viagem. Cada roteiro foi
-				pensado para proporcionar experiências únicas e memoráveis.</p>
+    <section class="page-title-section">
+        <div class="container">
+            <h1>Roteiros Incríveis em Gostoso</h1>
+            <p>Encontre o pacote perfeito para sua viagem.</p>
 
-			<div class="search-container">
-				<form action="@{Pacotes.lista}" method="GET" class="search-form">
-					<input type="search" name="termo" class="search-input"
-						placeholder="Buscar por nome ou atividade..." value="${termo}">
-					<button type="submit" class="search-button">
-						<svg>
-							<use href="#icon-search" /></svg>
-					</button>
-				</form>
-			</div>
-		</div>
-	</section>
+            <div class="search-container">
+                <form action="@{Pacotes.lista}" method="GET" class="search-form">
+                    <input type="search" name="termo" class="search-input"
+                        placeholder="Buscar por nome ou atividade..." value="${termo}">
+                    <button type="submit" class="search-button">
+                        <svg><use href="#icon-search" /></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-	<div class="container">
-		<div class="pacotes-grid">
+    <div class="container">
+        <div class="pacotes-grid">
 
-			#{list items:pacotes, as:'pacote'}
-			<div class="pacote-card">
-				<div class="pacote-card-content">
-					<h3>${pacote.nome}</h3>
+            #{list items:pacotes, as:'pacote'}
+            <div class="pacote-card">
+                <div class="pacote-card-content">
+                    <h3>${pacote.nome}</h3>
 
-					<div class="pacote-meta">
-						<span class="meta-item"><svg>
-								<use href="#icon-clock" /></svg> ${pacote.duracao}</span> <span
-							class="meta-item"><svg>
-								<use href="#icon-tag" /></svg> R$ ${pacote.preco.format('##0.00')}</span>
-					</div>
+                    <div class="pacote-meta">
+                        <span class="meta-item">
+                            <svg><use href="#icon-clock" /></svg> ${pacote.duracao} dias
+                        </span> 
+                        <span class="meta-item">
+                            <svg><use href="#icon-tag" /></svg> R$ ${pacote.preco?.format('##0.00')}
+                        </span>
+                    </div>
 
-					<ul class="atividades-list">
-						<h4>Atividades Inclusas:</h4>
+                    <ul class="atividades-list">
+                        <h4>Atividades Inclusas:</h4>
+                        #{list items:pacote.atividades, as:'atividade'}
+                        <li><svg><use href="#icon-check" /></svg> ${atividade.nome}</li> 
+                        #{/list}
+                    </ul>
 
-						#{list items:pacote.atividades, as:'atividade'}
-						<li><svg>
-								<use href="#icon-check" /></svg> ${atividade.nome}</li> #{/list}
-
-					</ul>
-					<a href="@{Pacotes.detalhar(pacote.id)}" class="btn">Ver Detalhes</a>
-						
-				</div>
-			</div>
-			#{/list} #{else}
-			<p class="sem-resultados">Nenhum pacote encontrado com os
-				critérios de busca.</p>
-			#{/else}
-		</div>
-	</div>
+                    <div class="card-actions">
+                    #{if session['cliente']}
+					<button class="btn-adicionar-carrinho" data-id="${pacote.id}">
+        <svg><use href="#icon-cart-add" /></svg>
+        Comprar
+    </button>
+				#{/if}
+                       
+                        
+                        <a href="@{Pacotes.detalhar(pacote.id)}" class="btn">Detalhes</a>
+                    </div>
+                        
+                </div>
+            </div>
+            #{/list} #{else}
+            <p class="sem-resultados">Nenhum pacote encontrado.</p>
+            #{/else}
+        </div>
+    </div>
 </main>
 
- <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-            <symbol id="icon-search" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </symbol>
-            <symbol id="icon-clock" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm4.24-4.24l1.41 1.41-5.66 5.66-1.41-1.41z"/>
-            </symbol>
-            <symbol id="icon-tag" viewBox="0 0 24 24">
-                 <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.05-.59-1.42zM13 20.01L4 11V4h7l9 9-7 7.01zM6.5 8C5.67 8 5 7.33 5 6.5S5.67 5 6.5 5 8 5.67 8 6.5 7.33 8 6.5 8z"/>
-            </symbol>
-            <symbol id="icon-check" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </symbol>
-        </defs>
-    </svg>
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm4.24-4.24l1.41 1.41-5.66 5.66-1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-tag" viewBox="0 0 24 24">
+                <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.05-.59-1.42zM13 20.01L4 11V4h7l9 9-7 7.01zM6.5 8C5.67 8 5 7.33 5 6.5S5.67 5 6.5 5 8 5.67 8 6.5 7.33 8 6.5 8z"/>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-cart-add" viewBox="0 0 24 24">
+            <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-8.9-5h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4l-3.87 7H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2z"/>
+        </symbol>
+    </defs>
+</svg>
+
+#{set 'moreScripts'}
+<script>
+    $(function() {
+        $('.btn-adicionar-carrinho').click(function(e) {
+            e.preventDefault(); 
+            
+            var botao = $(this);
+            var idPacote = botao.attr('data-id');
+            var conteudoOriginal = botao.html();
+            
+            
+            botao.css('opacity', '0.7').prop('disabled', true).text('Adicionando...');
+
+            
+            $.ajax({
+                url: '@{Carrinho.adicionarAjax()}',
+                type: 'POST',
+                data: { idPacote: idPacote },
+                success: function(response) {
+                    // Atualiza a bolinha vermelha (se você já tiver colocado ela no main.html)
+                    $('.cart-badge').text(response.total).show();
+
+                    // Deixa o botão verde
+                    botao.addClass('btn-sucesso'); 
+                    botao.html('Adicionado!');
+
+                   
+                    setTimeout(function() {
+                        botao.removeClass('btn-sucesso');
+                        botao.html(conteudoOriginal);
+                        botao.css('opacity', '1').prop('disabled', false);
+                    }, 2000);
+                },
+                error: function(xhr) {
+                    if (xhr.status == 401) {
+                        alert("Faça login para comprar!");
+                        window.location.href = "@{Login.form()}";
+                    } else {
+                        alert("Erro ao adicionar.");
+                        botao.html(conteudoOriginal).css('opacity', '1').prop('disabled', false);
+                    }
+                }
+            });
+        });
+    });
+</script>
+#{/set}
 

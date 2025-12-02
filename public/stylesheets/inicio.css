@@ -193,11 +193,11 @@
             }
         }
         
-        .hero-section {
-    /* AQUI ESTÁ A IMAGEM! */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTdvl1FXnQDWI46ycd0UlnJMhjFSqXtOIODed0FDftzIVu5oD3aBKgyVwTSDO9Q_LTfHZ-2ga4i8QMf_Jih0g7k8S0116C8L_kDABubqw');
+    /* Seção Principal (Hero) - CÓDIGO ATUALIZADO */
+.hero-section {
+    /* Use '../images/' para subir uma pasta (de stylesheets) e entrar em images */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/quadri2.jpg');
     
-    /* E aqui estão os estilos para que ela preencha a seção toda */
     background-size: cover;
     background-position: center;
     height: 90vh;
@@ -207,5 +207,5 @@
     text-align: center;
     color: var(--cor-texto-claro);
     padding: 0 1rem;
-    margin-top: 60px; 
+    margin-top: 60px; /* Espaço para o header fixo */
 }
