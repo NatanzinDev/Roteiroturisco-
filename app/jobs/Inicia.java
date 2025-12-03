@@ -47,6 +47,7 @@ public class Inicia extends Job{
             p1.atividades.add(a); // Passeio de Buggy
             p1.atividades.add(d); // Aula de Kitesurf
             p1.atividades.add(e); // Aventura de Quadriciclo
+            p1.nomeFoto = "img1.jpeg";
             p1.save();
 
             // Pacote 2
@@ -59,6 +60,7 @@ public class Inicia extends Job{
             p2.atividades = new ArrayList<Atividade>();
             p2.atividades.add(c); // Pôr do Sol em Tourinhos
             p2.atividades.add(f); // Cavalgada na Praia
+            p2.nomeFoto = "img2.jpg";
             p2.save();
 
             // Pacote 3
@@ -71,6 +73,7 @@ public class Inicia extends Job{
             p3.atividades = new ArrayList<Atividade>();
             p3.atividades.add(b); // Visita aos Parrachos
             p3.atividades.add(d); // Aula de Kitesurf
+            p3.nomeFoto = "img3.jpg";
             p3.save();
 
             // Pacote 4
@@ -84,6 +87,7 @@ public class Inicia extends Job{
             p4.atividades.add(a); // Passeio de Buggy
             p4.atividades.add(b); // Visita aos Parrachos
             p4.atividades.add(f); // Cavalgada na Praia
+            p4.nomeFoto = "img4.jpg";
             p4.save();
 
             // Pacote 5
@@ -97,6 +101,7 @@ public class Inicia extends Job{
             p5.atividades = new ArrayList<Atividade>();
             p5.atividades.add(a); // Passeio de Buggy
             p5.atividades.add(c); // Pôr do Sol em Tourinhos
+            p5.nomeFoto = "img5.jpg";
             p5.save();
 
             // Pacote 6
@@ -110,6 +115,7 @@ public class Inicia extends Job{
             p6.atividades = new ArrayList<Atividade>();
             p6.atividades.add(e); // Aventura de Quadriciclo
             p6.atividades.add(f); // Cavalgada na Praia
+            p6.nomeFoto = "img6.jpg";
             p6.save();
 		}
 		
