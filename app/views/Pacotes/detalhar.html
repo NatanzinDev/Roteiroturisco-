@@ -1,26 +1,45 @@
 #{extends 'main.html' /}
 #{set title:'Detalhes do pacote' /}
 
- <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/detalhar.css'}">
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/detalhar.css'}">
+
+<style>
+    .pacote-capa {
+        width: 100%;
+        height: auto;
+        max-height: 400px; /* Limita a altura para não ocupar a tela toda */
+        object-fit: cover; /* Corta a imagem proporcionalmente se necessário */
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+</style>
  
- <div class="container">
+<div class="container">
   <main class="container">
         
         <div class="detalhe-header">
             <h1>${pacote.nome}</h1>
 
             <div class="page-actions">
-				 #{if session['adm']}
-				  <a href="@{Pacotes.editar(pacote.id)}" class="btn btn-primary">Editar Pacote</a>
-    #{/if}
+                #{if session['adm']}
+                  <a href="@{Pacotes.editar(pacote.id)}" class="btn btn-primary">Editar Pacote</a>
+                #{/if}
                
                 <a href="@{Pacotes.listaadm}" class="btn btn-secondary">Voltar para a Listagem</a>
-                
             </div>
         </div>
 
         <div class="detalhe-grid">
             <div class="detalhe-main">
+                
+                #{if pacote.nomeFoto}
+                    <div class="foto-container">
+                        <img src="../public/uploads/${pacote.nomeFoto}" 
+                             alt="Foto do pacote ${pacote.nome}" 
+                             class="pacote-capa">
+                    </div>
+                #{/if}
                 <section>
                     <h2>Descrição</h2>
                     <p class="descricao">${pacote.descricao}</p>
@@ -57,7 +76,6 @@
         </div>
 
     </main>
-
 </div>
  
 

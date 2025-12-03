@@ -1,13 +1,13 @@
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.Valid;
 
 import models.Atividade;
 import models.PacoteTuristico;
 import models.Status;
+import play.Play;
 import play.mvc.Controller;
 import play.mvc.With;
 import seguranca.Administrador;
@@ -20,7 +20,25 @@ public class Pacotes extends Controller {
 		render(a);
 	}
 
-	public static void salvar(PacoteTuristico pacote, Long[] atividadesIds) {
+	public static void salvar(PacoteTuristico pacote,File foto, Long[] atividadesIds) {
+		
+		
+		
+		if (foto != null) {
+			
+			File pastaDestino = new File(Play.applicationPath, "public/uploads");
+		    
+		  
+		    if (!pastaDestino.exists()) {
+		        pastaDestino.mkdirs();
+		    }
+		    
+		    File arquivoDestino = new File(pastaDestino, foto.getName());
+		    
+			foto.renameTo(arquivoDestino);
+	        pacote.nomeFoto = foto.getName(); 
+	     
+	    }
 		
 		if(atividadesIds != null) {
 			for(int i = 0; i < atividadesIds.length -1 ; i++) {

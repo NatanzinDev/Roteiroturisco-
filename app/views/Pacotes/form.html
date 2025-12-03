@@ -1,81 +1,85 @@
-#{extends 'main.html' /} #{if p} #{set title:'Edição de pacote' /}
-#{/if} #{else} #{set title:'Salvar pacote' /} #{/else}
+#{extends 'main.html' /} 
+#{if p} #{set title:'Edição de pacote' /} #{/if} 
+#{else} #{set title:'Salvar pacote' /} #{/else}
 
-<link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/form.css'}">
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/form.css'}">
 
 <main class="container-cadastro">
-	<header class="header-formulario">
-		#{if p}
-		<h1>Edição de Pacote Turístico</h1>
-		#{/if} #{else}
-		<h1>Cadastro de Pacote Turístico</h1>
-		#{/else}
+    <header class="header-formulario">
+        #{if p}
+        <h1>Edição de Pacote Turístico</h1>
+        #{/if} #{else}
+        <h1>Cadastro de Pacote Turístico</h1>
+        #{/else}
+        <p>Crie um novo roteiro combinando as atividades da região.</p>
+    </header>
 
-		<p>Crie um novo roteiro combinando as atividades da região.</p>
-	</header>
+    <form action="@{Pacotes.salvar()}" method="POST" enctype="multipart/form-data">
 
-<form action="@{Pacotes.salvar()}" method="POST">
+        <input type="hidden" name="pacote.id" value="${pacote?.id}" />
 
-    <input type="hidden" name="pacote.id" value="${pacote?.id}" />
-
-    <div class="form-group">
-        <label for="nome_pacote">Nome do Pacote</label>
-        <input type="text" id="nome_pacote" name="pacote.nome" value="${flash['pacote.nome'] ? flash['pacote.nome'] : pacote?.nome}" 
-               placeholder="Ex: Rota do Sol e Vento" >
-        
-       <span class="error"> #{error 'pacote.nome' /}</span>
-    </div>
-
-    <div class="form-group">
-        <label for="preco">Preço (R$)</label>
-        <input type="number" id="preco" name="pacote.preco" placeholder="Ex: 950.00" 
-               step="0.01"  value="${flash['pacote.preco'] ? flash['pacote.preco'] : pacote?.preco}">
-               
-       <span class="error"> #{error 'pacote.preco' /} </span>
-    </div>
-
-    <div class="form-group">
-        <label for="duracao">Duração</label>
-        <input type="text" id="duracao" name="pacote.duracao" placeholder="Ex: 3 horas" 
-                value="${flash['pacote.duracao'] ? flash['pacote.duracao'] : pacote?.duracao}">
-               
-       <span class="error"> #{error 'pacote.duracao' /} </span>
-    </div>
-
-    <div class="form-group">
-        <label for="descricao">Descrição Detalhada do Pacote</label>
-        <textarea id="descricao" name="pacote.descricao"
-                  placeholder="Descreva os diferenciais, o que está incluso e os encantos deste pacote..."
-                  >${flash['pacote.descricao'] ? flash['pacote.descricao'] : pacote?.descricao}</textarea>
-                  
-       <span class="error"> #{error 'pacote.descricao' /} </span>
-    </div>
-
-    <div class="form-group">
-        <fieldset class="atividades-fieldset">
-            <legend>Selecione as Atividades</legend>
+        <div class="form-group">
+            <label for="foto">Foto de Capa</label>
             
-           <span class="error"> #{error 'atividadesIds' /} </span>
-            
-            <div class="atividades-grid">
-
-                #{list items:a, as:'atividade'}
-                <div class="atividade-item">
-                    <input type="checkbox" id="ativ-${atividade.id}"
-                           name="atividadesIds" value="${atividade.id}" #{if
-                           pacote?.atividades?.contains(atividade)}
-                           checked="checked" #{/if}
-                    />
-                    <label for="ativ-${atividade.id}"> ${atividade.nome} </label>
+            #{if pacote?.nomeFoto}
+                <div class="preview-img" style="margin-bottom: 10px;">
+                    <small>Imagem atual:</small><br>
+                    <img src="../public/uploads/${pacote.nomeFoto}" alt="Foto atual" style="max-width: 150px; border-radius: 4px;">
                 </div>
-                #{/list}
+            #{/if}
 
-            </div>
-        </fieldset>
-    </div>
+            <input type="file" id="foto" name="foto" accept="image/*">
+            <span class="error"> #{error 'foto' /}</span>
+        </div>
+        <div class="form-group">
+            <label for="nome_pacote">Nome do Pacote</label>
+            <input type="text" id="nome_pacote" name="pacote.nome" value="${flash['pacote.nome'] ? flash['pacote.nome'] : pacote?.nome}" 
+                   placeholder="Ex: Rota do Sol e Vento">
+            <span class="error"> #{error 'pacote.nome' /}</span>
+        </div>
 
-    <button type="submit" class="btn-submit">Salvar Pacote</button>
-</form>
+        <div class="form-group">
+            <label for="preco">Preço (R$)</label>
+            <input type="number" id="preco" name="pacote.preco" placeholder="Ex: 950.00" 
+                   step="0.01" value="${flash['pacote.preco'] ? flash['pacote.preco'] : pacote?.preco}">
+            <span class="error"> #{error 'pacote.preco' /} </span>
+        </div>
+
+        <div class="form-group">
+            <label for="duracao">Duração</label>
+            <input type="text" id="duracao" name="pacote.duracao" placeholder="Ex: 3 horas" 
+                    value="${flash['pacote.duracao'] ? flash['pacote.duracao'] : pacote?.duracao}">
+            <span class="error"> #{error 'pacote.duracao' /} </span>
+        </div>
+
+        <div class="form-group">
+            <label for="descricao">Descrição Detalhada do Pacote</label>
+            <textarea id="descricao" name="pacote.descricao"
+                      placeholder="Descreva os diferenciais, o que está incluso e os encantos deste pacote..."
+                      >${flash['pacote.descricao'] ? flash['pacote.descricao'] : pacote?.descricao}</textarea>
+            <span class="error"> #{error 'pacote.descricao' /} </span>
+        </div>
+
+        <div class="form-group">
+            <fieldset class="atividades-fieldset">
+                <legend>Selecione as Atividades</legend>
+                <span class="error"> #{error 'atividadesIds' /} </span>
+                
+                <div class="atividades-grid">
+                    #{list items:a, as:'atividade'}
+                    <div class="atividade-item">
+                        <input type="checkbox" id="ativ-${atividade.id}"
+                               name="atividadesIds" value="${atividade.id}" #{if
+                               pacote?.atividades?.contains(atividade)}
+                               checked="checked" #{/if}
+                        />
+                        <label for="ativ-${atividade.id}"> ${atividade.nome} </label>
+                    </div>
+                    #{/list}
+                </div>
+            </fieldset>
+        </div>
+
+        <button type="submit" class="btn-submit">Salvar Pacote</button>
+    </form>
 </main>
-
