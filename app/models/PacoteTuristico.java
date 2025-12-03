@@ -29,6 +29,8 @@ public class PacoteTuristico extends Model{
 	@MinSize(20)
 	public String descricao;
 	
+	public String nomeFoto;
+	
 	@Enumerated(EnumType.STRING)
 	public Status status;
 	

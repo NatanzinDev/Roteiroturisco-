@@ -11,5 +11,8 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
+#Deixa a pasta upload visivel publicamente
+GET     /uploads/                                staticDir:uploads
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
