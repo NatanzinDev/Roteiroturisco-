@@ -4,14 +4,54 @@
 <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/detalhar.css'}">
 
 <style>
+    /* Estilo da Imagem de Capa */
     .pacote-capa {
         width: 100%;
         height: auto;
-        max-height: 400px; /* Limita a altura para não ocupar a tela toda */
-        object-fit: cover; /* Corta a imagem proporcionalmente se necessário */
+        max-height: 400px;
+        object-fit: cover;
         border-radius: 8px;
         margin-bottom: 20px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* --- NOVO: Estilo do Botão de Compra no Sidebar --- */
+    .btn-comprar-detalhe {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Ocupa a largura toda do sidebar */
+        background-color: #005A8D; /* Azul destaque */
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-top: 20px;
+        gap: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-comprar-detalhe:hover {
+        background-color: #004a75;
+    }
+
+    .btn-comprar-detalhe:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .btn-comprar-detalhe svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+    
+    /* Feedback de sucesso */
+    .btn-sucesso {
+        background-color: #28a745 !important;
     }
 </style>
  
@@ -24,9 +64,12 @@
             <div class="page-actions">
                 #{if session['adm']}
                   <a href="@{Pacotes.editar(pacote.id)}" class="btn btn-primary">Editar Pacote</a>
+                  <a href="@{Pacotes.lista}" class="btn btn-secondary">Voltar para a Listagem</a>
                 #{/if}
                
-                <a href="@{Pacotes.listaadm}" class="btn btn-secondary">Voltar para a Listagem</a>
+                 #{if session['cliente']}
+                 <a href="@{Pacotes.lista}" class="btn btn-secondary">Voltar para a Listagem</a>
+                #{/if}
             </div>
         </div>
 
@@ -40,6 +83,7 @@
                              class="pacote-capa">
                     </div>
                 #{/if}
+
                 <section>
                     <h2>Descrição</h2>
                     <p class="descricao">${pacote.descricao}</p>
@@ -72,11 +116,83 @@
                         <strong>Duração:</strong> ${pacote.duracao} Horas
                     </div>
                 </div>
-            </aside>
+
+                #{if session['cliente']}
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+                    
+                    <button class="btn-comprar-detalhe" data-id="${pacote.id}">
+                        <svg><use href="#icon-cart-add"/></svg>
+                        Comprar Agora
+                    </button>
+                #{/if}
+                </aside>
         </div>
 
     </main>
 </div>
- 
+
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-tag" viewBox="0 0 24 24">
+            <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.05-.59-1.42zM13 20.01L4 11V4h7l9 9-7 7.01zM6.5 8C5.67 8 5 7.33 5 6.5S5.67 5 6.5 5 8 5.67 8 6.5 7.33 8 6.5 8z"/>
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm4.24-4.24l1.41 1.41-5.66 5.66-1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-cart-add" viewBox="0 0 24 24">
+            <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-8.9-5h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4l-3.87 7H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2z"/>
+        </symbol>
+    </defs>
+</svg>
+
+#{set 'moreScripts'}
+<script>
+    $(function() {
+        $('.btn-comprar-detalhe').click(function(e) {
+            e.preventDefault(); 
+            
+            var botao = $(this);
+            var idPacote = botao.attr('data-id');
+            var conteudoOriginal = botao.html();
+            
+          
+            botao.css('opacity', '0.7').prop('disabled', true).text('Adicionando...');
+
+            $.ajax({
+                url: '@{Carrinho.adicionarAjax()}',
+                type: 'POST',
+                data: { idPacote: idPacote },
+                success: function(response) {
+                 
+                    $('.cart-badge').text(response.total).show();
+
+                    
+                    botao.addClass('btn-sucesso'); 
+                    botao.html('<svg><use href="#icon-check"/></svg> Adicionado!');
+
+                   
+                    setTimeout(function() {
+                        botao.removeClass('btn-sucesso');
+                        botao.html(conteudoOriginal);
+                        botao.css('opacity', '1').prop('disabled', false);
+                    }, 2000);
+                },
+                error: function(xhr) {
+                    if (xhr.status == 401) {
+                        alert("Faça login para comprar!");
+                        window.location.href = "@{Login.form()}";
+                    } else {
+                        alert("Erro ao adicionar ao carrinho.");
+                        botao.html(conteudoOriginal).css('opacity', '1').prop('disabled', false);
+                    }
+                }
+            });
+        });
+    });
+</script>
+#{/set}
 
   
