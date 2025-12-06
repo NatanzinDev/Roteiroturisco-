@@ -40,7 +40,18 @@ O projeto foi desenvolvido utilizando a arquitetura **MVC**.
 - **Front-end:** HTML5, CSS3 (Customizado + Bootstrap 5), jQuery
 - **Banco de Dados:** H2 Database (JPA/Hibernate)
 - **Versionamento:** Git, GitHub
-- **Ferramentas:** Eclipse IDE, Google Chrome e Edge 
+- **Ferramentas:** Eclipse IDE, Google Chrome e Edge
+
+## Logins para teste do sistema 
+
+- **Cliente:**
+  - **Email**: teste@gmail.com
+  - **Senha**: 123456
+  
+- **ADM:**:
+  - **Email**: root@gmail.com
+  - **Senha**: 123456
+ 
 
 ## Layout Responsivo
 
@@ -73,4 +84,14 @@ O projeto foi desenvolvido com foco na experiência do usuário, para garantir q
 <br>
 
 ---
-### Monitor LG Freesync 21.5
+### Monitor LG Freesync "21.5"
+<img width="1920" height="1040" alt="Gostoso Destinos _ Página de Login - Google Chrome 06_12_2025 09_05_11" src="https://github.com/user-attachments/assets/a8ef168a-5a4c-4bbe-b168-b6eb5304e436" />
+<br>
+<img width="1920" height="1040" alt="Gostoso Destinos _ Página de Login - Google Chrome 06_12_2025 09_05_34" src="https://github.com/user-attachments/assets/eaac3fb0-5048-4561-9deb-5698b96d544d" />
+<br>
+<img width="1920" height="1040" alt="Gostoso Destinos _ Página de Login - Google Chrome 06_12_2025 09_05_40" src="https://github.com/user-attachments/assets/b1b62c2e-472b-45e7-a24d-c8ea86b43187" />
+<br>
+<img width="1920" height="1040" alt="Gostoso Destinos _ Página de Login - Google Chrome 06_12_2025 09_06_14" src="https://github.com/user-attachments/assets/73c0fc52-7753-44a1-a461-94de06e59b8a" />
+<br>
+<img width="1920" height="1040" alt="Gostoso Destinos _ Página de Login - Google Chrome 06_12_2025 09_34_41" src="https://github.com/user-attachments/assets/1520af7f-c380-476c-ae7e-210f79ba6b8f" />
+<br>
