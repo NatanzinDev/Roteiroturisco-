@@ -6,6 +6,7 @@ import play.libs.Crypto;
 import play.mvc.Controller;
 
 public class Login extends Controller {
+	
 	public static void logar(String email, String senha) {
 		Usuario u = Usuario.find("email = ?1 and senha = ?2",
               	email, Crypto.passwordHash(senha)).first();

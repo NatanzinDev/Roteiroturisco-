@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Perfil;
 import models.Usuario;
 import play.cache.Cache;
 import play.data.validation.Valid;
@@ -43,8 +44,16 @@ public class Usuarios extends Controller{
 		if(usu == null) {
 			u.save();
 			flash.success("Usuário cadastrado com sucesso!");
+		
 			session.put("usuario", u.email);
-			Pacotes.lista(null);      
+			session.put("usuarioperfil", u.perfil.name());
+			if(session.get("usuarioperfil").equals(Perfil.ADMINISTRADOR.name())) {
+				session.put("adm", u.perfil.name());
+			}
+			if(session.get("usuarioperfil").equals(Perfil.CLIENTE.name())) {
+				session.put("cliente", u.perfil.name());
+			}
+			Pacotes.inicio();      
 		}else {
 			flash.error("Email já cadastrado, tente outro!");
 			form();
