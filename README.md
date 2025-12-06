@@ -46,10 +46,31 @@ O projeto foi desenvolvido utilizando a arquitetura **MVC**.
 
 O projeto foi desenvolvido com foco na experiência do usuário, para garantir que o layout se adapte perfeitamente a qualquer tamanho de tela, desde dispositivos móveis até desktops.
 
-<div align="center">
-  <img src="public/images/img2.jpg" alt="Demonstração de Responsividade em múltiplos dispositivos" width="80%">
-</div>
+### Galaxy Book 2
+
+<img width="1920" height="1078" alt="Gostoso Destinos _ Página de Login - Perfil 1 — Microsoft​ Edge 06_12_2025 11_41_24" src="https://github.com/user-attachments/assets/d9a2f198-55ec-419a-971b-376e6d58508c" />
+<br>
+<img width="1920" height="1078" alt="Gostoso Destinos _ Página de Login - Perfil 1 — Microsoft​ Edge 06_12_2025 11_43_02" src="https://github.com/user-attachments/assets/8fb0324a-eb27-4053-8714-da9e59ee22a5" />
+<br>
+<img width="1920" height="1078" alt="Gostoso Destinos _ Página de Login - Perfil 1 — Microsoft​ Edge 06_12_2025 11_43_20" src="https://github.com/user-attachments/assets/726cfbc0-f401-484a-862d-1b53d6909cbe" />
+<br>
+<img width="1920" height="1078" alt="Gostoso Destinos _ Página de Login - Perfil 1 — Microsoft​ Edge 06_12_2025 12_01_14" src="https://github.com/user-attachments/assets/e26ccfd9-90cc-402a-b9c8-7a9c8b8df44d" />
 <br>
 
 ---
 
+### S23
+
+![Screenshot_20251206_091458_Chrome](https://github.com/user-attachments/assets/dc9636fa-77f8-4e4f-a157-af81840cd28a)
+<br>
+![Screenshot_20251206_091352_Chrome](https://github.com/user-attachments/assets/7c99d259-b4c4-4e22-ac36-478475195a25)
+<br>
+![Screenshot_20251206_091423_Chrome](https://github.com/user-attachments/assets/2d773c9f-7fb1-4abf-87d6-7125936c5e25)
+<br>
+![Screenshot_20251206_091406_Chrome](https://github.com/user-attachments/assets/b8994934-5bf3-451f-bce4-a1a64be3a0d1)
+<br>
+![Screenshot_20251206_091402_Chrome](https://github.com/user-attachments/assets/744b7fca-e52b-432f-9082-033fd22d7d2e)
+<br>
+
+---
+### Monitor LG Freesync 21.5
