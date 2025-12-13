@@ -164,4 +164,20 @@ public static void listaadm(String termo) {
 	render(pacotes,termo);
 }
 
+public static void ativar(Long id) {
+   
+    PacoteTuristico pacote = PacoteTuristico.findById(id);
+    
+    if(pacote == null) {
+        flash.error("Pacote não encontrado.");
+    } else {
+        pacote.status = Status.ATIVO; 
+        pacote.save();
+        flash.success("Pacote " + pacote.nome + " ativado com sucesso!");
+    }
+    
+    
+    listaadm(null);
+}
+
 }

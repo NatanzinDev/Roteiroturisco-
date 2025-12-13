@@ -125,3 +125,4 @@
     
     /* CSS dos status (CORRIGIDO) */
     .status-badge{padding:.3rem .8rem;border-radius:50px;font-size:.8rem;font-weight:600;text-transform:uppercase;display:inline-block}.status-ativo{background-color:var(--cor-verde-natureza);color:#fff}.status-inativo{background-color:#757575;color:#fff}.status-pendente{background-color:var(--cor-sol-destaque);color:#333}
+	

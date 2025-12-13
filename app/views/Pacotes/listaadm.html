@@ -51,8 +51,13 @@
 						<td class="actions-cell" style="justify-content: flex-end;">
 							<a href="@{Pacotes.detalhar(pacote.id)}" class="btn-info">Detalhes</a>
 							<a href="@{Pacotes.editar(pacote.id)}" class="btn-warning">Editar</a>
-							<a href="@{Pacotes.excluir(pacote.id)}" class="btn-danger"
+							#{if pacote.status.name() == 'ATIVO'} <a
+							href="@{Pacotes.excluir(pacote.id)}" class="btn-danger"
 							onclick="return confirm('Tem certeza que deseja inativar o pacote \'${pacote.nome}\'?');">Inativar</a>
+							#{/if} #{elseif pacote.status.name() == 'INATIVO'} <a
+							href="@{Pacotes.ativar(pacote.id)}" class="btn-success"
+							onclick="return confirm('Tem certeza que deseja reativar o pacote \'${pacote.nome}\'?');">Ativar</a>
+							#{/elseif}
 						</td>
 					</tr>
 					#{/list} #{else}
